@@ -1,0 +1,2 @@
+D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\Definitions.ToTheBeat.h
+D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\ToTheBeat.h
