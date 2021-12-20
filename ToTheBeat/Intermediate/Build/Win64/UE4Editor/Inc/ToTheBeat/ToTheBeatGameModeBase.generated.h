@@ -36,7 +36,7 @@ public: \
 
 #define ToTheBeat_Source_ToTheBeat_ToTheBeatGameModeBase_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API AToTheBeatGameModeBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API AToTheBeatGameModeBase(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AToTheBeatGameModeBase) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AToTheBeatGameModeBase); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AToTheBeatGameModeBase); \
@@ -48,8 +48,6 @@ public:
 
 
 #define ToTheBeat_Source_ToTheBeat_ToTheBeatGameModeBase_h_15_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API AToTheBeatGameModeBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AToTheBeatGameModeBase(AToTheBeatGameModeBase&&); \
@@ -57,7 +55,7 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AToTheBeatGameModeBase); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AToTheBeatGameModeBase); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AToTheBeatGameModeBase)
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AToTheBeatGameModeBase)
 
 
 #define ToTheBeat_Source_ToTheBeat_ToTheBeatGameModeBase_h_15_PRIVATE_PROPERTY_OFFSET

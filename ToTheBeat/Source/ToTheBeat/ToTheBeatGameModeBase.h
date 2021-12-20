@@ -13,5 +13,7 @@ UCLASS()
 class TOTHEBEAT_API AToTheBeatGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	AToTheBeatGameModeBase();
 };

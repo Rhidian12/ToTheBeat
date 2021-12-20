@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{7A95DFB6-189F-489C-836D-678590996D94}</UniqueIdentifier>
+      <UniqueIdentifier>{E1307841-7AA1-4C60-8160-D9E6484FB791}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{7E4F599F-092E-46C2-9054-AA4958D6E442}</UniqueIdentifier>
+      <UniqueIdentifier>{9A33219B-253B-41F0-9401-1A88704BFA53}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,7 +24,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{26B0EA17-ABEC-40BD-BB54-274FDB0A6ACD}</UniqueIdentifier>
+      <UniqueIdentifier>{CC40A157-AA26-40BD-815D-7E0A574C9E08}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -40,6 +40,24 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\ToTheBeat\ToTheBeatGameModeBase.h">
       <Filter>Source\ToTheBeat</Filter>
+    </ClInclude>
+    <Filter Include="Source\ToTheBeat\Private">
+      <UniqueIdentifier>{AE7312A0-7078-40B5-8E4C-24E5D8CAC6ED}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlock.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\PlayerPawn.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\ToTheBeat\Public">
+      <UniqueIdentifier>{8D0A7507-161F-48AE-B676-1CF79904AA76}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlock.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\PlayerPawn.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

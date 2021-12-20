@@ -2,4 +2,9 @@
 
 
 #include "ToTheBeatGameModeBase.h"
+#include "PlayerPawn.h"
 
+AToTheBeatGameModeBase::AToTheBeatGameModeBase()
+{
+	DefaultPawnClass = APlayerPawn::StaticClass();
+}
