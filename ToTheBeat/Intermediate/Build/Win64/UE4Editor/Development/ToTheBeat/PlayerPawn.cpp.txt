@@ -1,5 +1,9 @@
 D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\Definitions.ToTheBeat.h
 D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\PlayerPawn.h
+D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/SpringArmComponent.h
+D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SpringArmComponent.generated.h
+D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
+D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
 D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\PlayerPawn.generated.h
 D:\Epic Games\UE_4.27\Engine\Source\Runtime/Engine/Classes/Kismet/GameplayStatics.h
 D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h

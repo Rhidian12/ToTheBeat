@@ -32,4 +32,6 @@ private:
 
 	UPROPERTY(EditAnywhere);
 	float m_Speed;
+
+	bool m_IsDataSet;
 };

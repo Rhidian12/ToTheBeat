@@ -9,6 +9,8 @@ AMusicBlock::AMusicBlock()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	m_IsDataSet = false;
+
 	m_pProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>("ProjectileMovementComponent");
 
 	m_pStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
@@ -24,16 +26,21 @@ AMusicBlock::AMusicBlock()
 void AMusicBlock::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	m_PlayerPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
-	m_pProjectileMovementComponent->Velocity = (m_PlayerPosition - GetActorLocation()).GetUnsafeNormal() * m_Speed;
-
-	m_pProjectileMovementComponent->UpdateComponentVelocity();
 }
 
 // Called every frame
 void AMusicBlock::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (!m_IsDataSet)
+	{
+		m_PlayerPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+		m_pProjectileMovementComponent->Velocity = (m_PlayerPosition - GetActorLocation()).GetUnsafeNormal() * m_Speed;
+
+		m_pProjectileMovementComponent->UpdateComponentVelocity();
+
+		m_IsDataSet = true;
+	}
 }
 

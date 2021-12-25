@@ -4,6 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+
+#include <Components/StaticMeshComponent.h>
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+
 #include "PlayerPawn.generated.h"
 
 UCLASS()
@@ -24,4 +29,12 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+private:
+	// UPROPERTY(EditAnywhere);
+	// FTransform m_PlayerTransform;
+
+	UStaticMeshComponent* m_pStaticMeshComponent;
+	USpringArmComponent* m_pSpringArmComponent;
+	UCameraComponent* m_pCameraComponent;
 };
