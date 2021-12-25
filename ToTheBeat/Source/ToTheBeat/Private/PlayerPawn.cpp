@@ -14,8 +14,8 @@ APlayerPawn::APlayerPawn()
 	m_pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'")).Object);
 
 	m_pSpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
-	m_pSpringArmComponent->TargetArmLength = 300.f;
-	//m_pSpringArmComponent->SetRelativeRotation(FQuat{ GetActorUpVector(), FMath::DegreesToRadians(180.f) });
+	m_pSpringArmComponent->TargetArmLength = -100.f;
+	//m_pSpringArmComponent->SetRelativeRotation(FQuat{ m_pSpringArmComponent->GetRightVector(), FMath::DegreesToRadians(50.f) });
 
 	m_pCameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
 	m_pCameraComponent->SetupAttachment(m_pSpringArmComponent);
@@ -24,7 +24,7 @@ APlayerPawn::APlayerPawn()
 
 	m_pSpringArmComponent->SetupAttachment(RootComponent);
 
-	SetActorRotation(FRotator{0.f, 180.f, 0.f});
+	// SetActorRotation(FRotator{0.f, 180.f, 0.f});
 }
 
 // Called when the game starts or when spawned
@@ -32,16 +32,16 @@ void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	TArray<AActor*> actors{};
-	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "PlayerStart", actors);
-
-	if (actors.Num() > 0)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("pos before %f %f %f"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
-		SetActorLocation(actors[0]->GetActorLocation(), false, nullptr, ETeleportType::ResetPhysics);
-		UE_LOG(LogTemp, Warning, TEXT("pos after %f %f %f"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
-		// SetActorRotation(FQuat{ GetActorUpVector(), FMath::DegreesToRadians(180.f) });
-	}
+	// TArray<AActor*> actors{};
+	// UGameplayStatics::GetAllActorsWithTag(GetWorld(), "PlayerStart", actors);
+	// 
+	// if (actors.Num() > 0)
+	// {
+	// 	UE_LOG(LogTemp, Warning, TEXT("pos before %f %f %f"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
+	// 	SetActorLocation(actors[0]->GetActorLocation(), false, nullptr, ETeleportType::ResetPhysics);
+	// 	UE_LOG(LogTemp, Warning, TEXT("pos after %f %f %f"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
+	// 	// SetActorRotation(FQuat{ GetActorUpVector(), FMath::DegreesToRadians(180.f) });
+	// }
 }
 
 // Called every frame
