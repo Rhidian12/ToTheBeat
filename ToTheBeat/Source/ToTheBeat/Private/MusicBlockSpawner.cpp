@@ -42,7 +42,7 @@ void AMusicBlockSpawner::BeginPlay()
 		{
 			FString line{ fileContent.Mid(i, newLineLocation - i) };
 
-			UE_LOG(LogTemp, Warning, TEXT("Line %i :, %s"), i, *line);
+			// UE_LOG(LogTemp, Warning, TEXT("Line %i :, %s"), i, *line);
 
 			if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) == INDEX_NONE)
 			{
