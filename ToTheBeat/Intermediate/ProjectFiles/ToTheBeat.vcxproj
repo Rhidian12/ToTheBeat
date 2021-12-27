@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{83019FF7-1ABC-4668-8C93-DBCA88447A67}</ProjectGuid>
+    <ProjectGuid>{60333B38-D07E-4A91-9261-D1E9BBDAE72F}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>ToTheBeat</RootNamespace>
     <PlatformToolset>v142</PlatformToolset>
@@ -287,6 +287,7 @@
     <None Include="..\..\ToTheBeat.uproject"/>
     <None Include="..\..\Source\ToTheBeat.Target.cs"/>
     <None Include="..\..\Source\ToTheBeatEditor.Target.cs"/>
+    <None Include="..\..\.gitignore"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>

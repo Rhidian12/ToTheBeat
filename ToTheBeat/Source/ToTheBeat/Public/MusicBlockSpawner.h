@@ -26,4 +26,6 @@ protected:
 
 private:
 	TArray<UMaterial*> m_pMaterials;
+	TArray<float> m_Times;
+	TArray<char> m_Letters;
 };

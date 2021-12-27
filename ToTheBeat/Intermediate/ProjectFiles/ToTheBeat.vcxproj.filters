@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{E08B66E8-B1BA-4512-95D9-6935BF3EA06E}</UniqueIdentifier>
+      <UniqueIdentifier>{586BA828-7A6F-4BFA-AAEC-1351EFB8B996}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -11,8 +11,9 @@
     <None Include="..\..\Source\ToTheBeatEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{028AC95B-D959-45F0-B21E-99F0C985531F}</UniqueIdentifier>
+      <UniqueIdentifier>{3B7EA562-1307-4E21-ABF8-B17B9D3EBD20}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,7 +25,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{CF4703F0-2197-4F4E-A29C-AAF8C62CA16D}</UniqueIdentifier>
+      <UniqueIdentifier>{A3657E97-CAF3-4E0B-AC52-8DAECD97D039}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -42,7 +43,7 @@
       <Filter>Source\ToTheBeat</Filter>
     </ClInclude>
     <Filter Include="Source\ToTheBeat\Private">
-      <UniqueIdentifier>{957233E7-E869-4E02-A94F-1858D5469BC0}</UniqueIdentifier>
+      <UniqueIdentifier>{A6D61CFB-D1C3-4E17-B1C4-E0174778673E}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlock.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
@@ -54,7 +55,7 @@
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <Filter Include="Source\ToTheBeat\Public">
-      <UniqueIdentifier>{2AD4B7B6-E1D6-4F5F-8422-4099FB96E296}</UniqueIdentifier>
+      <UniqueIdentifier>{10E0DC03-47B8-4B0C-B570-00A59C17D10C}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlock.h">
       <Filter>Source\ToTheBeat\Public</Filter>
