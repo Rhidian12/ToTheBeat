@@ -1,3 +1,9 @@
+.vs/.*
+Binaries/.*
+DerivedDataCache/.*
+Saved/.*
+Script/.*
+Intermediate/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/unrealengine,c++,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=unrealengine,c++,visualstudio
