@@ -1070,3 +1070,112 @@ LogConfig: Setting CVar [[r.setres:1280x720]]
 [2021.12.28-10.36.34:718][141]AssetCheck: New page: Asset Save: multiple assets
 [2021.12.28-10.36.34:730][141]LogContentValidation: Display: Validating MapBuildDataRegistry /Game/Maps/Level_BuiltData.Level_BuiltData
 [2021.12.28-10.36.34:731][141]LogContentValidation: Display: Validating World /Game/Maps/Level.Level
+[2021.12.28-11.10.11:641][585]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{148893cc-bbad-4548-8a74-8557dd5c8b34}.
+[2021.12.28-11.10.11:641][585]LogAudioMixer: Resetting audio stream to device id 
+[2021.12.28-11.10.11:670][585]LogAudioMixer: Display: 0: FrontLeft
+[2021.12.28-11.10.11:670][585]LogAudioMixer: Display: 1: FrontRight
+[2021.12.28-11.17.53:734][962]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{067e76fd-efba-4858-b34d-552fa0d78775}.
+[2021.12.28-11.17.53:734][962]LogAudioMixer: Resetting audio stream to device id 
+[2021.12.28-11.17.53:761][962]LogAudioMixer: Display: 0: FrontLeft
+[2021.12.28-11.17.53:761][962]LogAudioMixer: Display: 1: FrontRight
+[2021.12.28-11.37.45:618][716]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{148893cc-bbad-4548-8a74-8557dd5c8b34}.
+[2021.12.28-11.37.45:618][716]LogAudioMixer: Resetting audio stream to device id 
+[2021.12.28-11.37.45:633][716]LogAudioMixer: Display: 0: FrontLeft
+[2021.12.28-11.37.45:633][716]LogAudioMixer: Display: 1: FrontRight
+[2021.12.28-14.57.52:553][745]LogUdpMessaging: Warning: UDP messaging encountered an error. Auto repair routine started for reinitialization
+[2021.12.28-14.57.56:566][745]LogAudioMixer: Resetting audio stream to device id 
+[2021.12.28-14.57.56:686][745]LogAudioMixer: Display: 0: FrontLeft
+[2021.12.28-14.57.56:686][745]LogAudioMixer: Display: 1: FrontRight
+[2021.12.28-14.58.51:942][906]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{148893cc-bbad-4548-8a74-8557dd5c8b34}.
+[2021.12.28-14.58.51:942][906]LogAudioMixer: Resetting audio stream to device id 
+[2021.12.28-14.58.51:959][906]LogAudioMixer: Display: 0: FrontLeft
+[2021.12.28-14.58.51:959][906]LogAudioMixer: Display: 1: FrontRight
+[2021.12.28-14.59.11:379][964]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{067e76fd-efba-4858-b34d-552fa0d78775}.
+[2021.12.28-14.59.11:379][964]LogAudioMixer: Resetting audio stream to device id 
+[2021.12.28-14.59.11:389][964]LogAudioMixer: Display: 0: FrontLeft
+[2021.12.28-14.59.11:389][964]LogAudioMixer: Display: 1: FrontRight
+[2021.12.28-15.05.42:664][ 95]LogUObjectHash: Compacting FUObjectHashTables data took  15.08ms
+[2021.12.28-15.05.44:700][ 95]LogSlate: Window 'Delete Assets' being destroyed
+[2021.12.28-15.05.45:282][ 95]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
+[2021.12.28-15.05.45:298][ 95]LogUObjectHash: Compacting FUObjectHashTables data took   1.36ms
+[2021.12.28-15.05.45:303][ 95]LogUObjectHash: Compacting FUObjectHashTables data took   0.23ms
+[2021.12.28-15.06.28:526][659]LogSlate: Window 'Pick Parent Class' being destroyed
+[2021.12.28-15.06.28:539][659]LogContentBrowser: Deferred new asset file creation: NewBlueprint
+[2021.12.28-15.06.28:547][659]LogContentBrowser: Creating deferred item: NewBlueprint
+[2021.12.28-15.06.33:203][939]LogContentBrowser: Attempting asset rename: NewBlueprint -> BP_MusicBlockSpawner
+[2021.12.28-15.06.33:395][939]LogContentBrowser: End creating deferred item NewBlueprint
+[2021.12.28-15.06.35:214][ 35]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/BP_MusicBlockSpawner.BP_MusicBlockSpawner
+[2021.12.28-15.06.37:520][ 35]LogNativeClassHierarchy: Verbose: Native class hierarchy updated for 'BlueprintGraph' in 0.0024 seconds. Added 126 classes and 0 folders.
+[2021.12.28-15.06.39:783][ 35]LogRenderer: Reallocating scene render targets to support 912x520 Format 10 NumSamples 1 (Frame:1).
+[2021.12.28-15.06.41:694][141]LogSlate: Took 0.043865 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2021.12.28-15.12.16:995][ 79]LogSlate: Took 0.264277 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Italic.ttf' (157K)
+[2021.12.28-15.12.18:390][147]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/BP_MusicBlockSpawner" FILE="../../../../../Github/ToTheBeat/ToTheBeat/Content/Blueprints/BP_MusicBlockSpawner.uasset" SILENT=true
+[2021.12.28-15.12.19:464][147]LogSavePackage: Moving '../../../../../Github/ToTheBeat/ToTheBeat/Saved/BP_MusicBlockSpawner409E539F4C997036C73587A1FEBD5DEF.tmp' to '../../../../../Github/ToTheBeat/ToTheBeat/Content/Blueprints/BP_MusicBlockSpawner.uasset'
+[2021.12.28-15.12.19:494][147]AssetCheck: New page: Asset Save: BP_MusicBlockSpawner
+[2021.12.28-15.12.19:494][147]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/BP_MusicBlockSpawner.BP_MusicBlockSpawner
+[2021.12.28-15.12.23:768][375]LogSlate: Window 'BP_MusicBlockSpawner' being destroyed
+[2021.12.28-15.12.23:776][375]LogSlate: Window 'BP_MusicBlockSpawner' being destroyed
+[2021.12.28-15.12.23:889][375]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.12.23:889][375]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.12.28-15.12.33:564][920]Cmd: DELETE
+[2021.12.28-15.12.33:593][920]Cmd: ACTOR DELETE
+[2021.12.28-15.12.33:906][920]LogEditorActor: Deleted Actor: MusicBlockSpawner
+[2021.12.28-15.12.34:123][920]LogUObjectHash: Compacting FUObjectHashTables data took   4.05ms
+[2021.12.28-15.12.34:129][920]LogEditorActor: Deleted 1 Actors (0.265 secs)
+[2021.12.28-15.12.36:237][ 46]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Level" FILE="../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2021.12.28-15.12.36:255][ 46]LogUObjectHash: Compacting FUObjectHashTables data took   1.53ms
+[2021.12.28-15.12.36:265][ 46]LogSavePackage: Moving '../../../../../Github/ToTheBeat/ToTheBeat/Saved/Level660DE8C44EAB503E64308AB062F59DAD.tmp' to '../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level.umap'
+[2021.12.28-15.12.36:363][ 46]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Level_BuiltData" FILE="../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level_BuiltData.uasset" SILENT=true
+[2021.12.28-15.12.36:383][ 46]LogSavePackage: Moving '../../../../../Github/ToTheBeat/ToTheBeat/Saved/Level_BuiltDataA713FC6F4E9A6F6B4A9256AFEEDC9791.tmp' to '../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level_BuiltData.uasset'
+[2021.12.28-15.12.36:398][ 46]AssetCheck: New page: Asset Save: multiple assets
+[2021.12.28-15.12.36:398][ 46]LogContentValidation: Display: Validating MapBuildDataRegistry /Game/Maps/Level_BuiltData.Level_BuiltData
+[2021.12.28-15.12.36:398][ 46]LogContentValidation: Display: Validating World /Game/Maps/Level.Level
+[2021.12.28-15.12.40:608][298]LogEditorViewport: Clicking on Actor (LMB): BP_MusicBlockSpawner_C (BP_MusicBlockSpawner)
+[2021.12.28-15.12.48:764][736]LogAssetEditorSubsystem: Opening Asset editor for LevelScriptBlueprint /Game/Maps/Level.Level:PersistentLevel.Level
+[2021.12.28-15.20.16:535][485]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Level" FILE="../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2021.12.28-15.20.16:559][485]LogUObjectHash: Compacting FUObjectHashTables data took   2.09ms
+[2021.12.28-15.20.16:574][485]LogSavePackage: Moving '../../../../../Github/ToTheBeat/ToTheBeat/Saved/LevelCC4EDDDD4F416715812146918405AB85.tmp' to '../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level.umap'
+[2021.12.28-15.20.16:577][485]LogFileHelpers: Saving map 'Level' took 0.043
+[2021.12.28-15.20.16:591][485]AssetCheck: New page: Asset Save: Level
+[2021.12.28-15.20.16:591][485]LogContentValidation: Display: Validating World /Game/Maps/Level.Level
+[2021.12.28-15.20.17:912][564]LogSlate: Window 'Level' being destroyed
+[2021.12.28-15.20.17:918][564]LogSlate: Window 'Level' being destroyed
+[2021.12.28-15.20.17:958][564]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.20.17:958][564]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.12.28-15.20.19:028][625]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Level" FILE="../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2021.12.28-15.20.19:047][625]LogUObjectHash: Compacting FUObjectHashTables data took   2.15ms
+[2021.12.28-15.20.19:060][625]LogSavePackage: Moving '../../../../../Github/ToTheBeat/ToTheBeat/Saved/Level7A20270840C6AF83367FDDAEC1220DA6.tmp' to '../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level.umap'
+[2021.12.28-15.20.19:064][625]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Level_BuiltData" FILE="../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level_BuiltData.uasset" SILENT=true
+[2021.12.28-15.20.19:083][625]LogSavePackage: Moving '../../../../../Github/ToTheBeat/ToTheBeat/Saved/Level_BuiltDataBF6862464AB28D4C863C5CB161797A09.tmp' to '../../../../../Github/ToTheBeat/ToTheBeat/Content/Maps/Level_BuiltData.uasset'
+[2021.12.28-15.20.19:095][625]AssetCheck: New page: Asset Save: multiple assets
+[2021.12.28-15.20.19:095][625]LogContentValidation: Display: Validating MapBuildDataRegistry /Game/Maps/Level_BuiltData.Level_BuiltData
+[2021.12.28-15.20.19:095][625]LogContentValidation: Display: Validating World /Game/Maps/Level.Level
+[2021.12.28-15.20.19:919][674]LogUObjectHash: Compacting FUObjectHashTables data took   2.03ms
+[2021.12.28-15.20.20:531][674]LogSlate: Window 'ToTheBeat - Unreal Editor' being destroyed
+[2021.12.28-15.20.20:948][675]Cmd: QUIT_EDITOR
+[2021.12.28-15.20.20:948][675]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2021.12.28-15.20.21:061][675]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2021.12.28-15.20.21:977][675]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2021.12.28-15.20.21:977][675]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2021.12.28-15.20.21:977][675]LogAudio: Display: Audio Device unregistered from world 'Level'.
+[2021.12.28-15.20.21:987][675]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2021.12.28-15.20.21:990][675]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2021.12.28-15.20.22:049][675]LogAudio: Display: Audio Device Manager Shutdown
+[2021.12.28-15.20.22:056][675]LogWindowsTextInputMethodSystem: Display: IME system deactivated.
+[2021.12.28-15.20.22:073][675]LogExit: Preparing to exit.
+[2021.12.28-15.20.22:862][675]LogUObjectHash: Compacting FUObjectHashTables data took   5.18ms
+[2021.12.28-15.20.24:200][675]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.20.24:203][675]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.20.24:206][675]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.20.24:210][675]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.20.24:672][675]LogDemo: Cleaned up 0 splitscreen connections with owner deletion
+[2021.12.28-15.20.25:398][675]LogWorld: UWorld::CleanupWorld for None, bSessionEnded=true, bCleanupResources=true
+[2021.12.28-15.20.25:428][675]LogExit: Editor shut down
+[2021.12.28-15.20.25:436][675]LogExit: Transaction tracking system shut down
+[2021.12.28-15.20.29:917][675]LogExit: Object subsystem successfully closed.
+[2021.12.28-15.20.29:941][675]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2021.12.28-15.20.29:941][675]LogShaderCompilers: Display: Total job queries 0, among them cache hits 0 (0.00%)
+[2021.12.28-15.20.29:941][675]LogShaderCompilers: Display: Tracking 0 distinct input hashes that result in 0 distinct outputs (0.00%)
+[2021.12.28-15.20.29:964][675]LogShaderCompilers: Display: RAM used: 0.00 MB (0.00 GB) of 819.20 MB (0.80 GB) budget. Usage: 0.00%
+[2021.12.28-15.20.29:964][675]LogShaderCompilers: Display: ================================================
+[2021.12.28-15.20.30:512][675]LogShaderCompilers: Display: Shaders left to compile 0

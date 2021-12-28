@@ -2,12 +2,15 @@
 
 
 #include "MusicBlockSpawner.h"
+#include "../Public/MusicBlock.h"
 
 // Sets default values
 AMusicBlockSpawner::AMusicBlockSpawner()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	m_TotalElapsedTime = 0.f;
 }
 
 // Called when the game starts or when spawned
@@ -70,9 +73,51 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	m_TotalElapsedTime += DeltaTime;
+
+	for (int32 i{}; i < m_Times.Num(); ++i)
+	{
+		if (m_TotalElapsedTime >= m_Times[i])
+		{
+			SpawnBlock(m_Letters[i]);
+
+			m_Times.RemoveAt(i);
+			m_Letters.RemoveAt(i);
+
+			--i;
+		}
+	}
 }
 
 void AMusicBlockSpawner::AddMaterial(UMaterial* const pMaterial) noexcept
 {
 	m_pMaterials.Add(pMaterial);
+}
+
+void AMusicBlockSpawner::AddTransform(const FTransform& transform) noexcept
+{
+	m_pTransforms.Add(transform);
+}
+
+void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
+{
+	const FTransform* pTransform{};
+
+	switch (c)
+	{
+	case 'W':
+		pTransform = &m_pTransforms[0];
+		break;
+	case 'A':
+		pTransform = &m_pTransforms[1];
+		break;
+	case 'S':
+		pTransform = &m_pTransforms[2];
+		break;
+	case 'D':
+		pTransform = &m_pTransforms[3];
+		break;
+	}
+
+	GetWorld()->SpawnActor(AMusicBlock::StaticClass(), pTransform);
 }
