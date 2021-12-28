@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{586BA828-7A6F-4BFA-AAEC-1351EFB8B996}</UniqueIdentifier>
+      <UniqueIdentifier>{058EE4AB-5816-4BB5-8EC6-3F79C5D29C74}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -13,7 +13,7 @@
     </None>
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{3B7EA562-1307-4E21-ABF8-B17B9D3EBD20}</UniqueIdentifier>
+      <UniqueIdentifier>{639A2D80-D5B9-4818-BC95-429DFFAAE1E6}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -25,7 +25,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{A3657E97-CAF3-4E0B-AC52-8DAECD97D039}</UniqueIdentifier>
+      <UniqueIdentifier>{6A924ED5-4B58-4894-BA74-C15AFE6CB7F2}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -43,7 +43,7 @@
       <Filter>Source\ToTheBeat</Filter>
     </ClInclude>
     <Filter Include="Source\ToTheBeat\Private">
-      <UniqueIdentifier>{A6D61CFB-D1C3-4E17-B1C4-E0174778673E}</UniqueIdentifier>
+      <UniqueIdentifier>{0F608C0F-8247-404D-9514-388B55B2357B}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlock.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
@@ -51,16 +51,22 @@
     <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlockSpawner.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicPlayer.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\PlayerPawn.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <Filter Include="Source\ToTheBeat\Public">
-      <UniqueIdentifier>{10E0DC03-47B8-4B0C-B570-00A59C17D10C}</UniqueIdentifier>
+      <UniqueIdentifier>{28DC4DCF-6D9B-4036-9089-19F67449412A}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlock.h">
       <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlockSpawner.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicPlayer.h">
       <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\PlayerPawn.h">
