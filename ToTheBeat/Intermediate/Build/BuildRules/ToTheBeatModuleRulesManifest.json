@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\Github\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeat\\ToTheBeat.Build.cs",
-		"D:\\Github\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeat.Target.cs",
-		"D:\\Github\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeatEditor.Target.cs"
+		"C:\\Users\\rhidi\\Documents\\GitHub\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeat\\ToTheBeat.Build.cs",
+		"C:\\Users\\rhidi\\Documents\\GitHub\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeat.Target.cs",
+		"C:\\Users\\rhidi\\Documents\\GitHub\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeatEditor.Target.cs"
 	],
 	"EngineVersion": "4.27.0"
 }

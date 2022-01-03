@@ -32,14 +32,14 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintImplementableEvent)
-
 	void WPressed();
-	UFUNCTION(BlueprintImplementableEvent)
 
+	UFUNCTION(BlueprintImplementableEvent)
 	void APressed();
-	UFUNCTION(BlueprintImplementableEvent)
 
+	UFUNCTION(BlueprintImplementableEvent)
 	void SPressed();
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void DPressed();
 

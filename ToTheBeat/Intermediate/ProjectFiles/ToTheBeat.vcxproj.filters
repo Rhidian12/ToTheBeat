@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{2B6BB6CE-63C9-4ED9-9CA5-541BAD564065}</UniqueIdentifier>
+      <UniqueIdentifier>{4ECB8DAA-8B6A-44EB-B219-38B62F3FB2CC}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -13,7 +13,7 @@
     </None>
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{1E99CE38-8D81-459A-8DCD-A5CB8D885BCC}</UniqueIdentifier>
+      <UniqueIdentifier>{EFDF8198-8417-4D49-A0B7-251BE327964C}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,8 +24,11 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{AA0611D3-1497-45AC-BA1C-E13629A09A2B}</UniqueIdentifier>
+      <UniqueIdentifier>{4051D0E1-D435-4658-B854-1DA634B9A751}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -43,7 +46,7 @@
       <Filter>Source\ToTheBeat</Filter>
     </ClInclude>
     <Filter Include="Source\ToTheBeat\Private">
-      <UniqueIdentifier>{064B8C5E-D43C-4612-A502-6B5A2FD2ADE3}</UniqueIdentifier>
+      <UniqueIdentifier>{3E46E8DD-3F0A-4533-A775-6032A394C1CB}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlock.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
@@ -64,7 +67,7 @@
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <Filter Include="Source\ToTheBeat\Public">
-      <UniqueIdentifier>{29397939-7524-49D9-8262-6E9517C7D8FE}</UniqueIdentifier>
+      <UniqueIdentifier>{9DA2CE57-5C84-4BD1-9D3D-435F9A0074C8}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlock.h">
       <Filter>Source\ToTheBeat\Public</Filter>
