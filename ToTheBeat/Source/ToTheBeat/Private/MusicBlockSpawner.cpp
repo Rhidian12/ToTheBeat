@@ -2,6 +2,7 @@
 
 
 #include "MusicBlockSpawner.h"
+#include "ToTheBeatGameInstance.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -106,11 +107,6 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 	}
 }
 
-void AMusicBlockSpawner::AddMaterial(UMaterialInterface* const pMaterial) noexcept
-{
-	m_pMaterials.Add(pMaterial);
-}
-
 void AMusicBlockSpawner::AddTransform(const FTransform& transform) noexcept
 {
 	m_pTransforms.Add(transform);
@@ -135,26 +131,28 @@ void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
 	UMaterialInterface* pMaterial{};
 	FString text{};
 
+	const UMaterialManager* const pMaterialManager{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMaterialManagerInstance() };
+
 	switch (c)
 	{
 	case 'W':
 		pTransform = &m_pTransforms[0];
-		pMaterial = m_pMaterials[0];
+		pMaterial = pMaterialManager->GetMaterial(0);
 		text = TEXT("W");
 		break;
 	case 'A':
 		pTransform = &m_pTransforms[1];
-		pMaterial = m_pMaterials[1];
+		pMaterial = pMaterialManager->GetMaterial(1);
 		text = TEXT("A");
 		break;
 	case 'S':
 		pTransform = &m_pTransforms[2];
-		pMaterial = m_pMaterials[2];
+		pMaterial = pMaterialManager->GetMaterial(2);
 		text = TEXT("S");
 		break;
 	case 'D':
 		pTransform = &m_pTransforms[3];
-		pMaterial = m_pMaterials[3];
+		pMaterial = pMaterialManager->GetMaterial(3);
 		text = TEXT("D");
 		break;
 	}

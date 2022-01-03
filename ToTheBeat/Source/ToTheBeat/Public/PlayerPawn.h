@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 
 #include <Components/StaticMeshComponent.h>
+#include <Components/InputComponent.h>
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 
@@ -30,10 +31,19 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-private:
-	// UPROPERTY(EditAnywhere);
-	// FTransform m_PlayerTransform;
+	UFUNCTION(BlueprintImplementableEvent)
 
+	void WPressed();
+	UFUNCTION(BlueprintImplementableEvent)
+
+	void APressed();
+	UFUNCTION(BlueprintImplementableEvent)
+
+	void SPressed();
+	UFUNCTION(BlueprintImplementableEvent)
+	void DPressed();
+
+private:
 	UStaticMeshComponent* m_pStaticMeshComponent;
 	USpringArmComponent* m_pSpringArmComponent;
 	UCameraComponent* m_pCameraComponent;

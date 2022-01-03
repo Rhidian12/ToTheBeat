@@ -9,7 +9,6 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 struct FTransform;
-class UMaterialInterface;
 #ifdef TOTHEBEAT_MusicBlockSpawner_generated_h
 #error "MusicBlockSpawner.generated.h already included, missing '#pragma once' in MusicBlockSpawner.h"
 #endif
@@ -19,15 +18,13 @@ class UMaterialInterface;
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execSetDelay); \
-	DECLARE_FUNCTION(execAddTransform); \
-	DECLARE_FUNCTION(execAddMaterial);
+	DECLARE_FUNCTION(execAddTransform);
 
 
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execSetDelay); \
-	DECLARE_FUNCTION(execAddTransform); \
-	DECLARE_FUNCTION(execAddMaterial);
+	DECLARE_FUNCTION(execAddTransform);
 
 
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_INCLASS_NO_PURE_DECLS \

@@ -15,7 +15,6 @@ APlayerPawn::APlayerPawn()
 
 	m_pSpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
 	m_pSpringArmComponent->TargetArmLength = -100.f;
-	//m_pSpringArmComponent->SetRelativeRotation(FQuat{ m_pSpringArmComponent->GetRightVector(), FMath::DegreesToRadians(50.f) });
 
 	m_pCameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
 	m_pCameraComponent->SetupAttachment(m_pSpringArmComponent);
@@ -23,25 +22,12 @@ APlayerPawn::APlayerPawn()
 	RootComponent = m_pStaticMeshComponent;
 
 	m_pSpringArmComponent->SetupAttachment(RootComponent);
-
-	// SetActorRotation(FRotator{0.f, 180.f, 0.f});
 }
 
 // Called when the game starts or when spawned
 void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// TArray<AActor*> actors{};
-	// UGameplayStatics::GetAllActorsWithTag(GetWorld(), "PlayerStart", actors);
-	// 
-	// if (actors.Num() > 0)
-	// {
-	// 	UE_LOG(LogTemp, Warning, TEXT("pos before %f %f %f"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
-	// 	SetActorLocation(actors[0]->GetActorLocation(), false, nullptr, ETeleportType::ResetPhysics);
-	// 	UE_LOG(LogTemp, Warning, TEXT("pos after %f %f %f"), GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
-	// 	// SetActorRotation(FQuat{ GetActorUpVector(), FMath::DegreesToRadians(180.f) });
-	// }
 }
 
 // Called every frame
@@ -54,4 +40,9 @@ void APlayerPawn::Tick(float DeltaTime)
 void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	PlayerInputComponent->BindAction("W", EInputEvent::IE_Released, this, &APlayerPawn::WPressed);
+	PlayerInputComponent->BindAction("A", EInputEvent::IE_Released, this, &APlayerPawn::APressed);
+	PlayerInputComponent->BindAction("S", EInputEvent::IE_Released, this, &APlayerPawn::SPressed);
+	PlayerInputComponent->BindAction("D", EInputEvent::IE_Released, this, &APlayerPawn::DPressed);
 }

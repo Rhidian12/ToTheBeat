@@ -21,9 +21,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Material to assign to blocks"))
-	void AddMaterial(UMaterialInterface* const pMaterial) noexcept;
-
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Transform for block to spawn"))
 	void AddTransform(const FTransform& transform) noexcept;
 
@@ -37,7 +34,6 @@ protected:
 private:
 	void SpawnBlock(const char c) const noexcept;
 
-	TArray<UMaterialInterface*> m_pMaterials;
 	TArray<FTransform> m_pTransforms;
 
 	TArray<float> m_Times;

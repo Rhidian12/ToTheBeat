@@ -1,0 +1,31 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/GameInstance.h"
+#include "UMaterialManager.h"
+#include "ToTheBeatGameInstance.generated.h"
+
+/**
+ * 
+ */
+UCLASS()
+class TOTHEBEAT_API UToTheBeatGameInstance : public UGameInstance
+{
+	GENERATED_BODY()
+	
+
+public:
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Material Manager Instance"))
+	UMaterialManager* GetMaterialManagerInstance() noexcept;
+
+protected:
+	virtual void Shutdown() override;
+
+private:
+	/* this needs to be UPROPERTY so GC does its thing (apparently) */
+	/* Transient so that the object does not get serialized */
+	UPROPERTY(Transient)
+	UMaterialManager* m_pMaterialManagerInstance;
+};
