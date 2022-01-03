@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include <GameFramework/ProjectileMovementComponent.h>
 #include <Components/StaticMeshComponent.h>
+#include <Components/TextRenderComponent.h>
 
 #include "MusicBlock.generated.h"
 
@@ -21,17 +22,22 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void SetDirection(const FVector& direction) noexcept;
+	void SetText(const FText& text) noexcept;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-	FVector m_PlayerPosition;
-	UProjectileMovementComponent* m_pProjectileMovementComponent;
 	UStaticMeshComponent* m_pStaticMeshComponent;
+
+	UPROPERTY(EditAnywhere);
+	UTextRenderComponent* m_pTextRenderComponent;
 
 	UPROPERTY(EditAnywhere);
 	float m_Speed;
 
+	FVector m_Direction;
 	bool m_IsDataSet;
 };

@@ -2,7 +2,7 @@
 
 
 #include "MusicBlockSpawner.h"
-#include "../Public/MusicBlock.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 // Sets default values
 AMusicBlockSpawner::AMusicBlockSpawner()
@@ -11,6 +11,10 @@ AMusicBlockSpawner::AMusicBlockSpawner()
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_TotalElapsedTime = 0.f;
+
+	m_IsDelaySet = false;
+	m_Delay = 0.f;
+	m_DelayTimer = 0.f;
 }
 
 // Called when the game starts or when spawned
@@ -66,12 +70,25 @@ void AMusicBlockSpawner::BeginPlay()
 		else
 			++i;
 	}
+
+	m_InversePlayerForward = -GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorForwardVector();
 }
 
 // Called every frame
 void AMusicBlockSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (!m_IsDelaySet)
+		return;
+	else
+	{
+		if (m_DelayTimer < m_Delay)
+		{
+			m_DelayTimer += DeltaTime;
+			return;
+		}
+	}
 
 	m_TotalElapsedTime += DeltaTime;
 
@@ -89,7 +106,7 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 	}
 }
 
-void AMusicBlockSpawner::AddMaterial(UMaterial* const pMaterial) noexcept
+void AMusicBlockSpawner::AddMaterial(UMaterialInterface* const pMaterial) noexcept
 {
 	m_pMaterials.Add(pMaterial);
 }
@@ -99,25 +116,52 @@ void AMusicBlockSpawner::AddTransform(const FTransform& transform) noexcept
 	m_pTransforms.Add(transform);
 }
 
+void AMusicBlockSpawner::SetDelay(const float delay) noexcept
+{
+	m_Delay = delay;
+
+	m_IsDelaySet = true;
+}
+
 void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
 {
+	if (!m_BPMusicBlock)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Music Block BP not set!"));
+		return;
+	}
+
 	const FTransform* pTransform{};
+	UMaterialInterface* pMaterial{};
+	FString text{};
 
 	switch (c)
 	{
 	case 'W':
 		pTransform = &m_pTransforms[0];
+		pMaterial = m_pMaterials[0];
+		text = TEXT("W");
 		break;
 	case 'A':
 		pTransform = &m_pTransforms[1];
+		pMaterial = m_pMaterials[1];
+		text = TEXT("A");
 		break;
 	case 'S':
 		pTransform = &m_pTransforms[2];
+		pMaterial = m_pMaterials[2];
+		text = TEXT("S");
 		break;
 	case 'D':
 		pTransform = &m_pTransforms[3];
+		pMaterial = m_pMaterials[3];
+		text = TEXT("D");
 		break;
 	}
 
-	GetWorld()->SpawnActor(AMusicBlock::StaticClass(), pTransform);
+	AActor* pActor{ GetWorld()->SpawnActor(m_BPMusicBlock, pTransform, FActorSpawnParameters{}) };
+
+	static_cast<AMusicBlock*>(pActor)->SetDirection(m_InversePlayerForward);
+	static_cast<AMusicBlock*>(pActor)->SetText(FText::FromString(text));
+	static_cast<UStaticMeshComponent*>(pActor->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0, pMaterial);
 }

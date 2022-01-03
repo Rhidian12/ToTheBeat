@@ -17,9 +17,19 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 	TOTHEBEAT_API UClass* Z_Construct_UClass_AMusicBlockSpawner();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_ToTheBeat();
-	ENGINE_API UClass* Z_Construct_UClass_UMaterial_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	TOTHEBEAT_API UClass* Z_Construct_UClass_AMusicBlock_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AMusicBlockSpawner::execSetDelay)
+	{
+		P_GET_PROPERTY(FFloatProperty,Z_Param_delay);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetDelay(Z_Param_delay);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMusicBlockSpawner::execAddTransform)
 	{
 		P_GET_STRUCT_REF(FTransform,Z_Param_Out_transform);
@@ -30,7 +40,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 	}
 	DEFINE_FUNCTION(AMusicBlockSpawner::execAddMaterial)
 	{
-		P_GET_OBJECT(UMaterial,Z_Param_pMaterial);
+		P_GET_OBJECT(UMaterialInterface,Z_Param_pMaterial);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->AddMaterial(Z_Param_pMaterial);
@@ -42,6 +52,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AddMaterial", &AMusicBlockSpawner::execAddMaterial },
 			{ "AddTransform", &AMusicBlockSpawner::execAddTransform },
+			{ "SetDelay", &AMusicBlockSpawner::execSetDelay },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -49,7 +60,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 	{
 		struct MusicBlockSpawner_eventAddMaterial_Parms
 		{
-			const UMaterial* pMaterial;
+			const UMaterialInterface* pMaterial;
 		};
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_pMaterial_MetaData[];
@@ -66,7 +77,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial = { "pMaterial", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(MusicBlockSpawner_eventAddMaterial_Parms, pMaterial), Z_Construct_UClass_UMaterial_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial = { "pMaterial", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(MusicBlockSpawner_eventAddMaterial_Parms, pMaterial), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial_Statics::NewProp_pMaterial,
 	};
@@ -127,6 +138,47 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics
+	{
+		struct MusicBlockSpawner_eventSetDelay_Parms
+		{
+			float delay;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_delay_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_delay;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::NewProp_delay_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::NewProp_delay = { "delay", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(MusicBlockSpawner_eventSetDelay_Parms, delay), METADATA_PARAMS(Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::NewProp_delay_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::NewProp_delay_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::NewProp_delay,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::Function_MetaDataParams[] = {
+		{ "DisplayName", "SetSpawnDelay" },
+		{ "ModuleRelativePath", "Public/MusicBlockSpawner.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMusicBlockSpawner, nullptr, "SetDelay", nullptr, nullptr, sizeof(MusicBlockSpawner_eventSetDelay_Parms), Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMusicBlockSpawner_SetDelay()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMusicBlockSpawner_SetDelay_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_AMusicBlockSpawner_NoRegister()
 	{
 		return AMusicBlockSpawner::StaticClass();
@@ -138,6 +190,11 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_BPMusicBlock_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_m_BPMusicBlock;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -146,8 +203,9 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_ToTheBeat,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AMusicBlockSpawner_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial, "AddMaterial" }, // 507474711
+		{ &Z_Construct_UFunction_AMusicBlockSpawner_AddMaterial, "AddMaterial" }, // 3634387117
 		{ &Z_Construct_UFunction_AMusicBlockSpawner_AddTransform, "AddTransform" }, // 3883105057
+		{ &Z_Construct_UFunction_AMusicBlockSpawner_SetDelay, "SetDelay" }, // 3867268894
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlockSpawner_Statics::Class_MetaDataParams[] = {
@@ -155,6 +213,16 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		{ "ModuleRelativePath", "Public/MusicBlockSpawner.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPMusicBlock_MetaData[] = {
+		{ "Category", "MusicBlockSpawner" },
+		{ "ModuleRelativePath", "Public/MusicBlockSpawner.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPMusicBlock = { "m_BPMusicBlock", nullptr, (EPropertyFlags)0x0044000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlockSpawner, m_BPMusicBlock), Z_Construct_UClass_AMusicBlock_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPMusicBlock_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPMusicBlock_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMusicBlockSpawner_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPMusicBlock,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMusicBlockSpawner_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AMusicBlockSpawner>::IsAbstract,
 	};
@@ -164,11 +232,11 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		FuncInfo,
-		nullptr,
+		Z_Construct_UClass_AMusicBlockSpawner_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		UE_ARRAY_COUNT(FuncInfo),
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::PropPointers),
 		0,
 		0x009000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_AMusicBlockSpawner_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::Class_MetaDataParams))
@@ -182,7 +250,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMusicBlockSpawner, 305073850);
+	IMPLEMENT_CLASS(AMusicBlockSpawner, 1735706593);
 	template<> TOTHEBEAT_API UClass* StaticClass<AMusicBlockSpawner>()
 	{
 		return AMusicBlockSpawner::StaticClass();

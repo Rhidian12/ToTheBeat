@@ -6,4 +6,6 @@ D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/Project
 D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/MovementComponent.h
 D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\MovementComponent.generated.h
 D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ProjectileMovementComponent.generated.h
+D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/TextRenderComponent.h
+D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TextRenderComponent.generated.h
 D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\MusicBlock.generated.h

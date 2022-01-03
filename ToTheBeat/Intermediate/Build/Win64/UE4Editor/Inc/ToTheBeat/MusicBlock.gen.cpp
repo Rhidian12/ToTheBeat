@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlock() {}
 	TOTHEBEAT_API UClass* Z_Construct_UClass_AMusicBlock();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_ToTheBeat();
+	ENGINE_API UClass* Z_Construct_UClass_UTextRenderComponent_NoRegister();
 // End Cross Module References
 	void AMusicBlock::StaticRegisterNativesAMusicBlock()
 	{
@@ -31,6 +32,10 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlock() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_pTextRenderComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_m_pTextRenderComponent;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_Speed_MetaData[];
 #endif
@@ -50,6 +55,14 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlock() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_pTextRenderComponent_MetaData[] = {
+		{ "Category", "MusicBlock" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/MusicBlock.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_pTextRenderComponent = { "m_pTextRenderComponent", nullptr, (EPropertyFlags)0x0040000000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlock, m_pTextRenderComponent), Z_Construct_UClass_UTextRenderComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_pTextRenderComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_pTextRenderComponent_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_Speed_MetaData[] = {
 		{ "Category", "MusicBlock" },
 		{ "ModuleRelativePath", "Public/MusicBlock.h" },
@@ -57,6 +70,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlock() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_Speed = { "m_Speed", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlock, m_Speed), METADATA_PARAMS(Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_Speed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_Speed_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMusicBlock_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_pTextRenderComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlock_Statics::NewProp_m_Speed,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMusicBlock_Statics::StaticCppClassTypeInfo = {
@@ -86,7 +100,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlock() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMusicBlock, 3884183582);
+	IMPLEMENT_CLASS(AMusicBlock, 4160178761);
 	template<> TOTHEBEAT_API UClass* StaticClass<AMusicBlock>()
 	{
 		return AMusicBlock::StaticClass();
