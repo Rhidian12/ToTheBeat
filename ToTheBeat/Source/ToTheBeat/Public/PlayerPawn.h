@@ -31,16 +31,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UFUNCTION(BlueprintImplementableEvent)
 	void WPressed();
-
-	UFUNCTION(BlueprintImplementableEvent)
 	void APressed();
-
-	UFUNCTION(BlueprintImplementableEvent)
 	void SPressed();
-
-	UFUNCTION(BlueprintImplementableEvent)
 	void DPressed();
 
 private:

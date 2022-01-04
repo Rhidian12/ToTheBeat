@@ -3,11 +3,12 @@
 
 #include "PlayerPawn.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "ToTheBeatGameInstance.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_pStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
@@ -45,4 +46,24 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("A", EInputEvent::IE_Released, this, &APlayerPawn::APressed);
 	PlayerInputComponent->BindAction("S", EInputEvent::IE_Released, this, &APlayerPawn::SPressed);
 	PlayerInputComponent->BindAction("D", EInputEvent::IE_Released, this, &APlayerPawn::DPressed);
+}
+
+void APlayerPawn::WPressed()
+{
+	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('W');
+}
+
+void APlayerPawn::APressed()
+{
+	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('A');
+}
+
+void APlayerPawn::SPressed()
+{
+	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('S');
+}
+
+void APlayerPawn::DPressed()
+{
+	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('D');
 }

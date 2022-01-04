@@ -3,6 +3,7 @@
 
 #include "MusicBlockSpawner.h"
 #include "ToTheBeatGameInstance.h"
+#include "MusicBlockManager.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -131,7 +132,10 @@ void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
 	UMaterialInterface* pMaterial{};
 	FString text{};
 
-	const UMaterialManager* const pMaterialManager{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMaterialManagerInstance() };
+	UToTheBeatGameInstance* const pGameInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
+	const UMaterialManager* const pMaterialManager{ pGameInstance->GetMaterialManagerInstance() };
+	UMusicBlockManager* const pMusicBlockManager{ pGameInstance->GetMusicBlockManagerInstance() };
+
 
 	switch (c)
 	{
@@ -162,4 +166,6 @@ void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
 	static_cast<AMusicBlock*>(pActor)->SetDirection(m_InversePlayerForward);
 	static_cast<AMusicBlock*>(pActor)->SetText(FText::FromString(text));
 	static_cast<UStaticMeshComponent*>(pActor->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0, pMaterial);
+
+	pMusicBlockManager->AddMusicBlock(static_cast<AMusicBlock*>(pActor));
 }

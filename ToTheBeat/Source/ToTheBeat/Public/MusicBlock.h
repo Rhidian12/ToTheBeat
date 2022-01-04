@@ -25,6 +25,8 @@ public:
 	void SetDirection(const FVector& direction) noexcept;
 	void SetText(const FText& text) noexcept;
 
+	const FText& GetText() const noexcept;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

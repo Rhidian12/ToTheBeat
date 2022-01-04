@@ -55,3 +55,8 @@ void AMusicBlock::SetText(const FText& text) noexcept
 {
 	m_pTextRenderComponent->SetText(text);
 }
+
+const FText& AMusicBlock::GetText() const noexcept
+{
+	return m_pTextRenderComponent->Text;
+}

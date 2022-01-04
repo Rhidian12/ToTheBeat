@@ -8,6 +8,7 @@
 /NODEFAULTLIB
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\ToTheBeatEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlock.cpp.obj"
+"C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockManager.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockSpawner.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicPlayer.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\PlayerPawn.cpp.obj"
@@ -16,6 +17,7 @@
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\ToTheBeat.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\ToTheBeatGameModeBase.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlock.gen.cpp.obj"
+"C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockManager.gen.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockSpawner.gen.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicPlayer.gen.cpp.obj"
 "C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\PlayerPawn.gen.cpp.obj"

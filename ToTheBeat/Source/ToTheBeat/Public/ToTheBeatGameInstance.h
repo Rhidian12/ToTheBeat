@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "UMaterialManager.h"
+#include "MusicBlockManager.h"
 #include "ToTheBeatGameInstance.generated.h"
 
 /**
@@ -20,6 +21,9 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Material Manager Instance"))
 	UMaterialManager* GetMaterialManagerInstance() noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get MusicBlock Manager Instance"))
+	UMusicBlockManager* GetMusicBlockManagerInstance() noexcept;
+
 protected:
 	virtual void Shutdown() override;
 
@@ -28,4 +32,7 @@ private:
 	/* Transient so that the object does not get serialized */
 	UPROPERTY(Transient)
 	UMaterialManager* m_pMaterialManagerInstance;
+
+	UPROPERTY(Transient)
+	UMusicBlockManager* m_pMusicBlockManagerInstance;
 };
