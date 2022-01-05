@@ -32,7 +32,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	void SpawnBlock(const char c) const noexcept;
+	void SpawnBlock(const char c, const MusicBlockType type) const noexcept;
 
 	TArray<FTransform> m_pTransforms;
 
@@ -49,4 +49,6 @@ private:
 
 	UPROPERTY(EditAnywhere);
 	TSubclassOf<AMusicBlock> m_BPMusicBlock;
+
+	int m_SlowdownCounter;
 };

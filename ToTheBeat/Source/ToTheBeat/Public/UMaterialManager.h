@@ -24,6 +24,8 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Material By Index"))
 	UMaterialInterface* GetMaterial(const int index) const noexcept;
 
+	int32 GetIndexByMaterial(UMaterialInterface* const pMaterial) const noexcept;
+
 private:
 	TArray<UMaterialInterface*> m_Materials;
 };

@@ -10,6 +10,13 @@
 
 #include "MusicBlock.generated.h"
 
+UENUM()
+enum class MusicBlockType
+{
+	Normal,
+	Slowdown
+};
+
 UCLASS()
 class TOTHEBEAT_API AMusicBlock : public AActor
 {
@@ -17,7 +24,7 @@ class TOTHEBEAT_API AMusicBlock : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AMusicBlock();
+	AMusicBlock(const MusicBlockType type);
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -26,6 +33,10 @@ public:
 	void SetText(const FText& text) noexcept;
 
 	const FText& GetText() const noexcept;
+
+	UStaticMeshComponent* const GetStaticMeshComponent() const noexcept;
+
+	const MusicBlockType GetMusicBlockType() const noexcept;
 
 protected:
 	// Called when the game starts or when spawned
@@ -42,4 +53,6 @@ private:
 
 	FVector m_Direction;
 	bool m_IsDataSet;
+
+	MusicBlockType m_MusicBlockType;
 };

@@ -20,3 +20,8 @@ UMaterialInterface* UMaterialManager::GetMaterial(const int index) const noexcep
 {
 	return m_Materials[index];
 }
+
+int32 UMaterialManager::GetIndexByMaterial(UMaterialInterface* const pMaterial) const noexcept
+{
+	return m_Materials.Find(pMaterial);
+}

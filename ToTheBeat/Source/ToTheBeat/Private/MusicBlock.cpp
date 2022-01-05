@@ -4,7 +4,7 @@
 #include "MusicBlock.h"
 
 // Sets default values
-AMusicBlock::AMusicBlock()
+AMusicBlock::AMusicBlock(const MusicBlockType type)
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -22,6 +22,8 @@ AMusicBlock::AMusicBlock()
 	m_Direction = FVector{};
 
 	m_IsDataSet = false;
+
+	m_MusicBlockType = type;
 }
 
 // Called when the game starts or when spawned
@@ -41,8 +43,6 @@ void AMusicBlock::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	//UE_LOG(LogTemp, Warning, TEXT("Direction: %f, %f, %f"), m_Direction.X, m_Direction.Y, m_Direction.Z);
-
 	RootComponent->MoveComponent(m_Direction * m_Speed * DeltaTime, GetActorRotation().Quaternion(), false);
 }
 
@@ -59,4 +59,14 @@ void AMusicBlock::SetText(const FText& text) noexcept
 const FText& AMusicBlock::GetText() const noexcept
 {
 	return m_pTextRenderComponent->Text;
+}
+
+UStaticMeshComponent* const AMusicBlock::GetStaticMeshComponent() const noexcept
+{
+	return m_pStaticMeshComponent;
+}
+
+const MusicBlockType AMusicBlock::GetMusicBlockType() const noexcept
+{
+	return m_MusicBlockType;
 }

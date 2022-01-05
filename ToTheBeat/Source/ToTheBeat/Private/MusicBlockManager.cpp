@@ -2,13 +2,26 @@
 
 
 #include "MusicBlockManager.h"
+#include "ToTheBeatGameInstance.h"
+#include "MusicBlock.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
-void UMusicBlockManager::AddMusicBlock(AMusicBlock* const pMusicBlock) noexcept
+AMusicBlockManager::AMusicBlockManager()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
+
+void AMusicBlockManager::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void AMusicBlockManager::AddMusicBlock(AMusicBlock* const pMusicBlock) noexcept
 {
 	m_MusicBlocks.Add(pMusicBlock);
 }
 
-void UMusicBlockManager::RemoveMusicBlock(AMusicBlock* const pMusicBlock) noexcept
+void AMusicBlockManager::RemoveMusicBlockByValue(AMusicBlock* const pMusicBlock) noexcept
 {
 	const int32 index{ m_MusicBlocks.Find(pMusicBlock) };
 
@@ -19,7 +32,7 @@ void UMusicBlockManager::RemoveMusicBlock(AMusicBlock* const pMusicBlock) noexce
 	}
 }
 
-void UMusicBlockManager::RemoveMusicBlock(const int index) noexcept
+void AMusicBlockManager::RemoveMusicBlockByIndex(const int index) noexcept
 {
 	if (index < m_MusicBlocks.Num())
 	{
@@ -28,7 +41,7 @@ void UMusicBlockManager::RemoveMusicBlock(const int index) noexcept
 	}
 }
 
-void UMusicBlockManager::TryToDestroyBlock(const char c) noexcept
+void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 {
 	/* [TODO] Get Reference to scoring system in here to adjust score */
 	/* [TODO] Get Reference to health system to remove health if necessary */
@@ -59,10 +72,27 @@ void UMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 	if (wasPlayerCorrect)
 	{
 		/* [TODO] Increase score */
-		RemoveMusicBlock(0);
+		RemoveMusicBlockByIndex(0);
 	}
 	else
 	{
 		/* Decrease lives, but dont remove the block! */
+	}
+}
+
+void AMusicBlockManager::Tick(float DeltaTime)
+{
+	/* make sure the first block has the emissive material */
+
+	UMaterialInterface* pMaterialInterface{ m_MusicBlocks[0]->GetStaticMeshComponent()->GetMaterial(0) };
+	if (pMaterialInterface->GetMaterial()->GetName() != TEXT("MAT_EmissiveSolidColor"))
+	{
+		UToTheBeatGameInstance* const pGameInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
+		const UMaterialManager* const pMaterialManager{ pGameInstance->GetMaterialManagerInstance() };
+
+		const int32 index{ pMaterialManager->GetIndexByMaterial(pMaterialInterface) };
+
+		if (index != INDEX_NONE)
+			m_MusicBlocks[0]->GetStaticMeshComponent()->SetMaterial(0, pMaterialManager->GetMaterial(index + 4));
 	}
 }

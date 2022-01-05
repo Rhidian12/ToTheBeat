@@ -22,7 +22,7 @@ public:
 	UMaterialManager* GetMaterialManagerInstance() noexcept;
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get MusicBlock Manager Instance"))
-	UMusicBlockManager* GetMusicBlockManagerInstance() noexcept;
+	AMusicBlockManager* GetMusicBlockManagerInstance() noexcept;
 
 protected:
 	virtual void Shutdown() override;
@@ -34,5 +34,5 @@ private:
 	UMaterialManager* m_pMaterialManagerInstance;
 
 	UPROPERTY(Transient)
-	UMusicBlockManager* m_pMusicBlockManagerInstance;
+	AMusicBlockManager* m_pMusicBlockManagerInstance;
 };

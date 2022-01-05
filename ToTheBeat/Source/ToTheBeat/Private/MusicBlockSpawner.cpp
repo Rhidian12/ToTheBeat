@@ -17,6 +17,8 @@ AMusicBlockSpawner::AMusicBlockSpawner()
 	m_IsDelaySet = false;
 	m_Delay = 0.f;
 	m_DelayTimer = 0.f;
+
+	m_SlowdownCounter = 0;
 }
 
 // Called when the game starts or when spawned
@@ -98,7 +100,10 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 	{
 		if (m_TotalElapsedTime >= m_Times[i])
 		{
-			SpawnBlock(m_Letters[i]);
+			if (m_SlowdownCounter++ % 10 != 0)
+				SpawnBlock(m_Letters[i], MusicBlockType::Normal);
+			else
+				SpawnBlock(m_Letters[i], MusicBlockType::Slowdown);
 
 			m_Times.RemoveAt(i);
 			m_Letters.RemoveAt(i);
@@ -120,7 +125,7 @@ void AMusicBlockSpawner::SetDelay(const float delay) noexcept
 	m_IsDelaySet = true;
 }
 
-void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
+void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) const noexcept
 {
 	if (!m_BPMusicBlock)
 	{
@@ -134,8 +139,7 @@ void AMusicBlockSpawner::SpawnBlock(const char c) const noexcept
 
 	UToTheBeatGameInstance* const pGameInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
 	const UMaterialManager* const pMaterialManager{ pGameInstance->GetMaterialManagerInstance() };
-	UMusicBlockManager* const pMusicBlockManager{ pGameInstance->GetMusicBlockManagerInstance() };
-
+	AMusicBlockManager* const pMusicBlockManager{ pGameInstance->GetMusicBlockManagerInstance() };
 
 	switch (c)
 	{
