@@ -8,6 +8,8 @@
 #include "MusicBlock.h"
 #include "MusicBlockManager.generated.h"
 
+class APlayerPawn;
+
 /**
  * 
  */
@@ -38,5 +40,18 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+	void ApplyEmissiveMaterialToFirstBlock() noexcept;
+	void HandleSlowdown(const float DeltaTime) noexcept;
+	void HandleBomb() noexcept;
+
 	TArray<AMusicBlock*> m_MusicBlocks;
+
+	bool m_IsSlowdownActive;
+	float m_SlowdownTime;
+	float m_SlowdownTimer;
+
+	bool m_WasBombActivated;
+	int m_AmountOfBlocksDestroyedByBomb;
+
+	APlayerPawn* m_pPlayerPawn;
 };

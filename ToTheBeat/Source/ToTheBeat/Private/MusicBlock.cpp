@@ -4,7 +4,7 @@
 #include "MusicBlock.h"
 
 // Sets default values
-AMusicBlock::AMusicBlock(const MusicBlockType type)
+AMusicBlock::AMusicBlock()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -16,14 +16,14 @@ AMusicBlock::AMusicBlock(const MusicBlockType type)
 
 	m_pTextRenderComponent = CreateDefaultSubobject<UTextRenderComponent>("TextRenderComponent");
 	m_pTextRenderComponent->TextRenderColor = FColor::White;
-	
+
 	m_pTextRenderComponent->SetupAttachment(RootComponent);
 
 	m_Direction = FVector{};
 
 	m_IsDataSet = false;
 
-	m_MusicBlockType = type;
+	m_MusicBlockType = MusicBlockType::Normal;
 }
 
 // Called when the game starts or when spawned
@@ -31,7 +31,8 @@ void AMusicBlock::BeginPlay()
 {
 	Super::BeginPlay();
 
-	m_Speed = 250.f;
+	m_MaxSpeed = 150.f;
+	m_CurrentSpeed = m_MaxSpeed;
 
 	RootComponent->SetMobility(EComponentMobility::Type::Movable);
 
@@ -43,7 +44,7 @@ void AMusicBlock::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	RootComponent->MoveComponent(m_Direction * m_Speed * DeltaTime, GetActorRotation().Quaternion(), false);
+	RootComponent->MoveComponent(m_Direction * m_CurrentSpeed * DeltaTime, GetActorRotation().Quaternion(), false);
 }
 
 void AMusicBlock::SetDirection(const FVector& direction) noexcept
@@ -56,6 +57,16 @@ void AMusicBlock::SetText(const FText& text) noexcept
 	m_pTextRenderComponent->SetText(text);
 }
 
+void AMusicBlock::SetMusicBlockType(const MusicBlockType type) noexcept
+{
+	m_MusicBlockType = type;
+}
+
+void AMusicBlock::SetCurrentSpeed(const float currentSpeed) noexcept
+{
+	m_CurrentSpeed = currentSpeed;
+}
+
 const FText& AMusicBlock::GetText() const noexcept
 {
 	return m_pTextRenderComponent->Text;
@@ -66,7 +77,12 @@ UStaticMeshComponent* const AMusicBlock::GetStaticMeshComponent() const noexcept
 	return m_pStaticMeshComponent;
 }
 
-const MusicBlockType AMusicBlock::GetMusicBlockType() const noexcept
+MusicBlockType AMusicBlock::GetMusicBlockType() const noexcept
 {
 	return m_MusicBlockType;
+}
+
+float AMusicBlock::GetMaxSpeed() const noexcept
+{
+	return m_MaxSpeed;
 }

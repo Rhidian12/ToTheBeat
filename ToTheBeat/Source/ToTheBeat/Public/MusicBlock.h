@@ -14,7 +14,8 @@ UENUM()
 enum class MusicBlockType
 {
 	Normal,
-	Slowdown
+	Slowdown,
+	Bomb
 };
 
 UCLASS()
@@ -24,19 +25,20 @@ class TOTHEBEAT_API AMusicBlock : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AMusicBlock(const MusicBlockType type);
+	AMusicBlock();
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void SetDirection(const FVector& direction) noexcept;
 	void SetText(const FText& text) noexcept;
+	void SetMusicBlockType(const MusicBlockType type) noexcept;
+	void SetCurrentSpeed(const float currentSpeed) noexcept;
 
 	const FText& GetText() const noexcept;
-
 	UStaticMeshComponent* const GetStaticMeshComponent() const noexcept;
-
-	const MusicBlockType GetMusicBlockType() const noexcept;
+	MusicBlockType GetMusicBlockType() const noexcept;
+	float GetMaxSpeed() const noexcept;
 
 protected:
 	// Called when the game starts or when spawned
@@ -49,7 +51,8 @@ private:
 	UTextRenderComponent* m_pTextRenderComponent;
 
 	UPROPERTY(EditAnywhere);
-	float m_Speed;
+	float m_MaxSpeed;
+	float m_CurrentSpeed;
 
 	FVector m_Direction;
 	bool m_IsDataSet;

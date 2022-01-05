@@ -4,6 +4,8 @@
 #include "PlayerPawn.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "ToTheBeatGameInstance.h"
+#include "HealthComponent.h"
+#include "MusicBlockManager.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -14,15 +16,17 @@ APlayerPawn::APlayerPawn()
 	m_pStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
 	m_pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'")).Object);
 
+	RootComponent = m_pStaticMeshComponent;
+
 	m_pSpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
 	m_pSpringArmComponent->TargetArmLength = -100.f;
 
 	m_pCameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
 	m_pCameraComponent->SetupAttachment(m_pSpringArmComponent);
 
-	RootComponent = m_pStaticMeshComponent;
-
 	m_pSpringArmComponent->SetupAttachment(RootComponent);
+
+	m_pHealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
 }
 
 // Called when the game starts or when spawned
@@ -46,6 +50,11 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("A", EInputEvent::IE_Released, this, &APlayerPawn::APressed);
 	PlayerInputComponent->BindAction("S", EInputEvent::IE_Released, this, &APlayerPawn::SPressed);
 	PlayerInputComponent->BindAction("D", EInputEvent::IE_Released, this, &APlayerPawn::DPressed);
+}
+
+UHealthComponent* const APlayerPawn::GetHealthComponent() const noexcept
+{
+	return m_pHealthComponent;
 }
 
 void APlayerPawn::WPressed()

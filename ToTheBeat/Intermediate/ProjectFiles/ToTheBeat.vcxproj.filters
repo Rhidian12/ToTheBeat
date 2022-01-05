@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{C145D3BB-A75D-48E5-AEF9-A9B89FDA381A}</UniqueIdentifier>
+      <UniqueIdentifier>{6BD24234-1A57-4822-A4F6-6D47D7E59D97}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -13,7 +13,7 @@
     </None>
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{DD817D50-7DBA-44AA-8B57-7AF7224189A9}</UniqueIdentifier>
+      <UniqueIdentifier>{1A7C07AD-ED9F-418D-977C-75BA45848EDD}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -28,7 +28,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{8F4C954E-52EE-46F4-96E7-AA1B4D214E5E}</UniqueIdentifier>
+      <UniqueIdentifier>{C6E8E32C-2183-4299-AD5F-15D2FA2D5DED}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -46,8 +46,11 @@
       <Filter>Source\ToTheBeat</Filter>
     </ClInclude>
     <Filter Include="Source\ToTheBeat\Private">
-      <UniqueIdentifier>{B332F6B0-E319-42A3-BF01-E23C09C31B22}</UniqueIdentifier>
+      <UniqueIdentifier>{DE36830D-BC62-460D-A5E5-B5FC737CE03F}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\HealthComponent.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlock.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
@@ -63,6 +66,12 @@
     <ClCompile Include="..\..\Source\ToTheBeat\Private\PlayerPawn.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\ScoreManager.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\SlowmotionBlock.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\ToTheBeatGameInstance.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
@@ -70,8 +79,11 @@
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <Filter Include="Source\ToTheBeat\Public">
-      <UniqueIdentifier>{18074565-4E6A-44A7-972B-B39237C01E11}</UniqueIdentifier>
+      <UniqueIdentifier>{63E4027D-BAC1-4A46-A66D-921E90BC5372}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\HealthComponent.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlock.h">
       <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
@@ -85,6 +97,12 @@
       <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\PlayerPawn.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\ScoreManager.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\SlowmotionBlock.h">
       <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\ToTheBeatGameInstance.h">

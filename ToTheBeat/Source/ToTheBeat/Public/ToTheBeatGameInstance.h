@@ -4,9 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "UMaterialManager.h"
-#include "MusicBlockManager.h"
+
 #include "ToTheBeatGameInstance.generated.h"
+
+class UMaterialManager;
+class AMusicBlockManager;
+class UScoreManager;
 
 /**
  * 
@@ -24,6 +27,9 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get MusicBlock Manager Instance"))
 	AMusicBlockManager* GetMusicBlockManagerInstance() noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get ScoreManager Instance"))
+	UScoreManager* GetScoreManagerInstance() noexcept;
+
 protected:
 	virtual void Shutdown() override;
 
@@ -35,4 +41,7 @@ private:
 
 	UPROPERTY(Transient)
 	AMusicBlockManager* m_pMusicBlockManagerInstance;
+
+	UPROPERTY(Transient)
+	UScoreManager* m_pScoreManagerInstance;
 };

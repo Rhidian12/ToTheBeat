@@ -51,4 +51,5 @@ private:
 	TSubclassOf<AMusicBlock> m_BPMusicBlock;
 
 	int m_SlowdownCounter;
+	int m_BombCounter;
 };

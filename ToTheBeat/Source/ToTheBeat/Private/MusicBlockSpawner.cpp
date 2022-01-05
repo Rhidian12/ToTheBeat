@@ -4,6 +4,7 @@
 #include "MusicBlockSpawner.h"
 #include "ToTheBeatGameInstance.h"
 #include "MusicBlockManager.h"
+#include "UMaterialManager.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -19,6 +20,7 @@ AMusicBlockSpawner::AMusicBlockSpawner()
 	m_DelayTimer = 0.f;
 
 	m_SlowdownCounter = 0;
+	m_BombCounter = 0;
 }
 
 // Called when the game starts or when spawned
@@ -100,10 +102,15 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 	{
 		if (m_TotalElapsedTime >= m_Times[i])
 		{
-			if (m_SlowdownCounter++ % 10 != 0)
-				SpawnBlock(m_Letters[i], MusicBlockType::Normal);
-			else
+			++m_SlowdownCounter;
+			++m_BombCounter;
+
+			if (m_SlowdownCounter % 20 == 0)
 				SpawnBlock(m_Letters[i], MusicBlockType::Slowdown);
+			else if (m_BombCounter % 33 == 0)
+				SpawnBlock(m_Letters[i], MusicBlockType::Bomb);
+			else
+				SpawnBlock(m_Letters[i], MusicBlockType::Normal);
 
 			m_Times.RemoveAt(i);
 			m_Letters.RemoveAt(i);
@@ -166,10 +173,24 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	}
 
 	AActor* pActor{ GetWorld()->SpawnActor(m_BPMusicBlock, pTransform, FActorSpawnParameters{}) };
+	AMusicBlock* pMusicBlock{ Cast<AMusicBlock>(pActor) };
+	UStaticMeshComponent* const pStaticMeshComponent{ pMusicBlock->GetStaticMeshComponent() };
 
-	static_cast<AMusicBlock*>(pActor)->SetDirection(m_InversePlayerForward);
-	static_cast<AMusicBlock*>(pActor)->SetText(FText::FromString(text));
-	static_cast<UStaticMeshComponent*>(pActor->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0, pMaterial);
+	pMusicBlock->SetDirection(m_InversePlayerForward);
+	pMusicBlock->SetText(FText::FromString(text));
+	pMusicBlock->SetMusicBlockType(type);
 
-	pMusicBlockManager->AddMusicBlock(static_cast<AMusicBlock*>(pActor));
+	switch (type)
+	{
+	case MusicBlockType::Normal:
+		// pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'")).Object);
+		break;
+	case MusicBlockType::Slowdown:
+		// pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cone.Cone'")).Object);
+		break;
+	}
+
+	pStaticMeshComponent->SetMaterial(0, pMaterial);
+
+	pMusicBlockManager->AddMusicBlock(pMusicBlock);
 }
