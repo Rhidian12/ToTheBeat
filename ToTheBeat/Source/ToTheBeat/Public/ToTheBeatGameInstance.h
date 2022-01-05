@@ -10,6 +10,7 @@
 class UMaterialManager;
 class AMusicBlockManager;
 class UScoreManager;
+class UModelManager;
 
 /**
  * 
@@ -30,6 +31,9 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get ScoreManager Instance"))
 	UScoreManager* GetScoreManagerInstance() noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get ModelManager Instance"))
+	UModelManager* GetModelManagerInstance() noexcept;
+
 protected:
 	virtual void Shutdown() override;
 
@@ -44,4 +48,7 @@ private:
 
 	UPROPERTY(Transient)
 	UScoreManager* m_pScoreManagerInstance;
+
+	UPROPERTY(Transient)
+	UModelManager* m_pModelManagerInstance;
 };

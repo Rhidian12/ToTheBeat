@@ -2,6 +2,9 @@
 
 
 #include "MusicBlock.h"
+#include "ToTheBeatGameInstance.h"
+#include "ModelManager.h"
+
 
 // Sets default values
 AMusicBlock::AMusicBlock()
@@ -10,7 +13,7 @@ AMusicBlock::AMusicBlock()
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_pStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
-	m_pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'")).Object);
+	// m_pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'")).Object);
 
 	RootComponent = m_pStaticMeshComponent;
 
@@ -37,6 +40,8 @@ void AMusicBlock::BeginPlay()
 	RootComponent->SetMobility(EComponentMobility::Type::Movable);
 
 	SetActorScale3D(FVector{ 0.5f, 0.5f, 0.5f });
+
+	m_pStaticMeshComponent = Cast<UToTheBeatGameInstance>(GetWorld()->GetGameInstance())->GetModelManagerInstance()->GetMesh(TEXT("Cube"));
 }
 
 // Called every frame

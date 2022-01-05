@@ -7,3 +7,7 @@ D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Proje
 D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/TextRenderComponent.h
 D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TextRenderComponent.generated.h
 D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\MusicBlock.generated.h
+D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\ToTheBeatGameInstance.h
+D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\ToTheBeatGameInstance.generated.h
+D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\ModelManager.h
+D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\ModelManager.generated.h

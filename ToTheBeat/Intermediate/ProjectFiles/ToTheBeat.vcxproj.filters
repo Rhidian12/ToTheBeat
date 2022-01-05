@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{6BD24234-1A57-4822-A4F6-6D47D7E59D97}</UniqueIdentifier>
+      <UniqueIdentifier>{69022776-8F94-4673-A7F0-EC40934C2779}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -13,7 +13,7 @@
     </None>
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{1A7C07AD-ED9F-418D-977C-75BA45848EDD}</UniqueIdentifier>
+      <UniqueIdentifier>{D2A96F85-882E-4BC6-BE4D-18EE6769A269}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -28,7 +28,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{C6E8E32C-2183-4299-AD5F-15D2FA2D5DED}</UniqueIdentifier>
+      <UniqueIdentifier>{207A589C-8A71-4EA7-B44C-3D9E660BE41E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -46,9 +46,12 @@
       <Filter>Source\ToTheBeat</Filter>
     </ClInclude>
     <Filter Include="Source\ToTheBeat\Private">
-      <UniqueIdentifier>{DE36830D-BC62-460D-A5E5-B5FC737CE03F}</UniqueIdentifier>
+      <UniqueIdentifier>{B8A5A47E-2A73-4A19-8719-EB2C55BBF16E}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\HealthComponent.cpp">
+      <Filter>Source\ToTheBeat\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ToTheBeat\Private\ModelManager.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\MusicBlock.cpp">
@@ -79,9 +82,12 @@
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <Filter Include="Source\ToTheBeat\Public">
-      <UniqueIdentifier>{63E4027D-BAC1-4A46-A66D-921E90BC5372}</UniqueIdentifier>
+      <UniqueIdentifier>{EAEA2B0F-820D-483D-9A32-0874911CC539}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\HealthComponent.h">
+      <Filter>Source\ToTheBeat\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ToTheBeat\Public\ModelManager.h">
       <Filter>Source\ToTheBeat\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\MusicBlock.h">

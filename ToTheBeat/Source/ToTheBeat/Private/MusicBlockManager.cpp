@@ -56,7 +56,8 @@ void AMusicBlockManager::RemoveMusicBlockByIndex(const int index) noexcept
 
 void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 {
-	/* [TODO] Get Reference to scoring system in here to adjust score */
+	if (m_MusicBlocks.Num() == 0)
+		return;
 
 	const FText& musicBlockText{ m_MusicBlocks[0]->GetText() };
 	bool wasPlayerCorrect{};
@@ -118,6 +119,9 @@ void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 
 void AMusicBlockManager::Tick(float DeltaTime)
 {
+	if (m_MusicBlocks.Num() == 0)
+		return;
+
 	/* Make sure the first block has the emissive material */
 	
 	ApplyEmissiveMaterialToFirstBlock();

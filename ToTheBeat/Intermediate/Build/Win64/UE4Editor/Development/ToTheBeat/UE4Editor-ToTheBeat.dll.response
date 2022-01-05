@@ -35,6 +35,7 @@
 /FUNCTIONPADMIN
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\ToTheBeatEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\HealthComponent.cpp.obj"
+"D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\ModelManager.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlock.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockManager.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockSpawner.cpp.obj"
@@ -47,6 +48,7 @@
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\ToTheBeat.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\ToTheBeatGameModeBase.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\HealthComponent.gen.cpp.obj"
+"D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\ModelManager.gen.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlock.gen.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockManager.gen.cpp.obj"
 "D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\MusicBlockSpawner.gen.cpp.obj"
