@@ -5,22 +5,16 @@
 
 UModelManager::UModelManager()
 {
-	FString path{ FPaths::ProjectContentDir() };
-	path.Append("Models/Bomb.uasset");
-	m_Meshes.Add(TTuple<FString, UStaticMeshComponent*>{ FString{ TEXT("Bomb") },
-		CreateDefaultSubobject<UStaticMeshComponent>("BombMesh") })->SetStaticMesh(
-			ConstructorHelpers::FObjectFinder<UStaticMesh>(*path).Object);
-
-	m_Meshes.Add(TTuple<FString, UStaticMeshComponent*>{ FString{ TEXT("Cube") },
-		CreateDefaultSubobject<UStaticMeshComponent>("CubeMesh") })->SetStaticMesh(
-			ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'")).Object);
+	m_Meshes.Add(TTuple<FString, UStaticMesh*>{ FString{ TEXT("Cube") },
+		ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'")).Object });
 }
 
-UModelManager::~UModelManager()
+void UModelManager::AddStaticMesh(const FString& id, UStaticMesh* pStaticMesh) noexcept
 {
+	m_Meshes.Add(TTuple<FString, UStaticMesh*>{ id, pStaticMesh });
 }
 
-UStaticMeshComponent* const UModelManager::GetMesh(const FString& id) const noexcept
+UStaticMesh* const UModelManager::GetMesh(const FString& id) const noexcept
 {
 	return m_Meshes.FindRef(id);
 }

@@ -41,7 +41,7 @@ void AMusicBlock::BeginPlay()
 
 	SetActorScale3D(FVector{ 0.5f, 0.5f, 0.5f });
 
-	m_pStaticMeshComponent = Cast<UToTheBeatGameInstance>(GetWorld()->GetGameInstance())->GetModelManagerInstance()->GetMesh(TEXT("Cube"));
+	m_pStaticMeshComponent->SetStaticMesh(Cast<UToTheBeatGameInstance>(GetWorld()->GetGameInstance())->GetModelManagerInstance()->GetMesh(TEXT("Cube")));
 }
 
 // Called every frame

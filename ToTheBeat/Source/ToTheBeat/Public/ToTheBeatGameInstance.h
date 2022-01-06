@@ -49,6 +49,6 @@ private:
 	UPROPERTY(Transient)
 	UScoreManager* m_pScoreManagerInstance;
 
-	UPROPERTY(Transient)
+	UPROPERTY(Transient, EditAnywhere)
 	UModelManager* m_pModelManagerInstance;
 };

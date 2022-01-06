@@ -19,10 +19,13 @@ class TOTHEBEAT_API UModelManager : public UObject
 
 public:
 	UModelManager();
-	~UModelManager();
 
-	UStaticMeshComponent* const GetMesh(const FString& id) const noexcept;
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Static Mesh"))
+	void AddStaticMesh(const FString& id, UStaticMesh* pStaticMesh) noexcept;
 
-private:
-	TMap<FString, UStaticMeshComponent*> m_Meshes;
+	UStaticMesh* const GetMesh(const FString& id) const noexcept;
+
+protected:
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	TMap<FString, UStaticMesh*> m_Meshes;
 };	
