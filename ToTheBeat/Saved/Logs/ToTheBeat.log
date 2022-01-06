@@ -1447,3 +1447,30 @@ LogConfig: Setting CVar [[r.setres:1280x720]]
 [2022.01.06-15.10.25:614][232]LogModuleManager: Shutting down and abandoning module DesktopPlatform (48)
 [2022.01.06-15.10.25:614][232]LogModuleManager: Shutting down and abandoning module PythonScriptPluginPreload (46)
 [2022.01.06-15.10.25:614][232]LogModuleManager: Shutting down and abandoning module PlatformCryptoOpenSSL (44)
+[2022.01.06-15.10.25:708][232]LogModuleManager: Shutting down and abandoning module PlatformCryptoTypes (42)
+[2022.01.06-15.10.25:708][232]LogModuleManager: Shutting down and abandoning module PlatformCrypto (40)
+[2022.01.06-15.10.25:708][232]LogModuleManager: Shutting down and abandoning module OodleDataCompressionFormat (38)
+[2022.01.06-15.10.25:708][232]LogModuleManager: Shutting down and abandoning module XGEController (36)
+[2022.01.06-15.10.25:708][232]LogXGEController: Cleaning working directory: C:/Users/Rhidian De Wit/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2022.01.06-15.10.25:708][232]LogModuleManager: Shutting down and abandoning module AnimationModifiers (34)
+[2022.01.06-15.10.26:084][232]LogModuleManager: Shutting down and abandoning module AudioEditor (32)
+[2022.01.06-15.10.26:251][232]LogModuleManager: Shutting down and abandoning module PropertyEditor (31)
+[2022.01.06-15.10.26:353][232]LogModuleManager: Shutting down and abandoning module TextureCompressor (28)
+[2022.01.06-15.10.26:395][232]LogModuleManager: Shutting down and abandoning module RenderCore (26)
+[2022.01.06-15.10.26:395][232]LogModuleManager: Shutting down and abandoning module Landscape (24)
+[2022.01.06-15.10.26:395][232]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (22)
+[2022.01.06-15.10.26:474][232]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (20)
+[2022.01.06-15.10.26:511][232]LogModuleManager: Shutting down and abandoning module Renderer (18)
+[2022.01.06-15.10.26:540][232]LogModuleManager: Shutting down and abandoning module Engine (16)
+[2022.01.06-15.10.26:578][232]LogModuleManager: Shutting down and abandoning module CoreUObject (14)
+[2022.01.06-15.10.26:578][232]LogModuleManager: Shutting down and abandoning module NetworkFile (12)
+[2022.01.06-15.10.26:588][232]LogModuleManager: Shutting down and abandoning module CookedIterativeFile (10)
+[2022.01.06-15.10.26:588][232]LogModuleManager: Shutting down and abandoning module StreamingFile (8)
+[2022.01.06-15.10.26:596][232]LogModuleManager: Shutting down and abandoning module SandboxFile (6)
+[2022.01.06-15.10.26:597][232]LogModuleManager: Shutting down and abandoning module PakFile (4)
+[2022.01.06-15.10.26:597][232]LogModuleManager: Shutting down and abandoning module RSA (3)
+[2022.01.06-15.10.26:597][232]LogContentStreaming: Display: There are 1 unreleased StreamingManagers
+[2022.01.06-15.10.26:627][232]LogD3D11RHI: Shutdown
+[2022.01.06-15.10.26:627][232]LogD3D11RHI: CleanupD3DDevice
+[2022.01.06-15.10.27:019][232]LogExit: Exiting.
+[2022.01.06-15.10.27:038][232]Log file closed, 01/06/22 16:10:27
