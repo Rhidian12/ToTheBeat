@@ -80,6 +80,58 @@ void AMusicBlockSpawner::BeginPlay()
 	m_InversePlayerForward = -GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorForwardVector();
 }
 
+void AMusicBlockSpawner::ReadFile(const TArray<int32>& tracks, const FString& file) noexcept
+{
+	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
+
+	FString fileContent;
+	if (FileManager.FileExists(*file))
+	{
+		if (FFileHelper::LoadFileToString(fileContent, *file, FFileHelper::EHashOptions::None))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
+		}
+	}
+
+	for (int32 i{}; i < fileContent.Len();)
+	{
+		const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
+
+		if (newLineLocation != INDEX_NONE)
+		{
+			const FString line{ fileContent.Mid(i, newLineLocation - i) };
+
+			/* Check if this is the track we're interested in */
+
+			/* Is this a comment? */
+			if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) != INDEX_NONE)
+			{
+				/* Track comment should look like: # TRACK [number] */
+
+				int32 spacePosition{};
+				if (line.FindLastChar(' ', spacePosition))
+				{
+					/* Is this comment a Track comment? */
+					if (line.Mid(0, spacePosition) == FString{ TEXT("# TRACK") })
+					{
+						for (const int32 trackNumber : tracks)
+						{
+							if (FString::FromInt(trackNumber) == line.Mid(spacePosition, 1))
+							{
+
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 // Called every frame
 void AMusicBlockSpawner::Tick(float DeltaTime)
 {

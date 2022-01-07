@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ToTheBeat.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{69022776-8F94-4673-A7F0-EC40934C2779}</UniqueIdentifier>
+      <UniqueIdentifier>{A3B6484C-6A18-49CA-A443-1DF47C3E14FA}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat.Target.cs">
       <Filter>Source</Filter>
@@ -13,7 +13,7 @@
     </None>
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{D2A96F85-882E-4BC6-BE4D-18EE6769A269}</UniqueIdentifier>
+      <UniqueIdentifier>{208CC9D9-5C35-4569-9778-1197FDE47D0B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -28,7 +28,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ToTheBeat">
-      <UniqueIdentifier>{207A589C-8A71-4EA7-B44C-3D9E660BE41E}</UniqueIdentifier>
+      <UniqueIdentifier>{EF964167-1762-44EC-BEE6-3220D4756057}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ToTheBeat\ToTheBeat.Build.cs">
       <Filter>Source\ToTheBeat</Filter>
@@ -46,7 +46,7 @@
       <Filter>Source\ToTheBeat</Filter>
     </ClInclude>
     <Filter Include="Source\ToTheBeat\Private">
-      <UniqueIdentifier>{B8A5A47E-2A73-4A19-8719-EB2C55BBF16E}</UniqueIdentifier>
+      <UniqueIdentifier>{F5A603ED-D05F-4EE9-952B-10A3AEF9A026}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ToTheBeat\Private\HealthComponent.cpp">
       <Filter>Source\ToTheBeat\Private</Filter>
@@ -82,7 +82,7 @@
       <Filter>Source\ToTheBeat\Private</Filter>
     </ClCompile>
     <Filter Include="Source\ToTheBeat\Public">
-      <UniqueIdentifier>{EAEA2B0F-820D-483D-9A32-0874911CC539}</UniqueIdentifier>
+      <UniqueIdentifier>{21CDA2ED-032D-4C63-8ADA-5D2EB80ECAE4}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\ToTheBeat\Public\HealthComponent.h">
       <Filter>Source\ToTheBeat\Public</Filter>

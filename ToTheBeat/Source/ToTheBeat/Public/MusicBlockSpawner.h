@@ -21,6 +21,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void ReadFile(const TArray<int32>& tracks, const FString& file) noexcept;
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Transform for block to spawn"))
 	void AddTransform(const FTransform& transform) noexcept;
 
@@ -33,6 +35,7 @@ protected:
 
 private:
 	void SpawnBlock(const char c, const MusicBlockType type) const noexcept;
+	bool IsTrack(const FString& fileContents);
 
 	TArray<FTransform> m_pTransforms;
 

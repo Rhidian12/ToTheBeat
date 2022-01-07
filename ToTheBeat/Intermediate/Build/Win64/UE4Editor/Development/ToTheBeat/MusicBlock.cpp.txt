@@ -1,13 +1,13 @@
-D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\Definitions.ToTheBeat.h
-D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\MusicBlock.h
-D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/ProjectileMovementComponent.h
-D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/MovementComponent.h
-D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\MovementComponent.generated.h
-D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ProjectileMovementComponent.generated.h
-D:\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/TextRenderComponent.h
-D:\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TextRenderComponent.generated.h
-D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\MusicBlock.generated.h
-D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\ToTheBeatGameInstance.h
-D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\ToTheBeatGameInstance.generated.h
-D:\Github\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\ModelManager.h
-D:\Github\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\ModelManager.generated.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Development\ToTheBeat\Definitions.ToTheBeat.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\MusicBlock.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/ProjectileMovementComponent.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/MovementComponent.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\MovementComponent.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ProjectileMovementComponent.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/TextRenderComponent.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TextRenderComponent.generated.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\MusicBlock.generated.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\ToTheBeatGameInstance.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\ToTheBeatGameInstance.generated.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Source\ToTheBeat\Public\ModelManager.h
+C:\Users\rhidi\Documents\GitHub\ToTheBeat\ToTheBeat\Intermediate\Build\Win64\UE4Editor\Inc\ToTheBeat\ModelManager.generated.h
