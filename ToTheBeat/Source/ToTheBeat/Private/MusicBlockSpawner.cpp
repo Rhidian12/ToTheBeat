@@ -28,66 +28,71 @@ void AMusicBlockSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FString path{ FPaths::ProjectContentDir() };
-	path.Append("SongBeats/Undertale - Megalovania.txt");
+	//FString path{ FPaths::ProjectContentDir() };
+	//path.Append("SongBeats/Undertale - Megalovania.txt");
 
-	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
+	//IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
 
-	FString fileContent;
-	if (FileManager.FileExists(*path))
-	{
-		if (FFileHelper::LoadFileToString(fileContent, *path, FFileHelper::EHashOptions::None))
-		{
-			//UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Text From File: %s"), *fileContent);
-			UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
-		}
-	}
+	//FString fileContent;
+	//if (FileManager.FileExists(*path))
+	//{
+	//	if (FFileHelper::LoadFileToString(fileContent, *path, FFileHelper::EHashOptions::None))
+	//	{
+	//		//UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Text From File: %s"), *fileContent);
+	//		UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
+	//	}
+	//	else
+	//	{
+	//		UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
+	//	}
+	//}
 
-	for (int32 i{}; i < fileContent.Len();)
-	{
-		const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
+	//for (int32 i{}; i < fileContent.Len();)
+	//{
+	//	const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
 
-		if (newLineLocation != INDEX_NONE)
-		{
-			FString line{ fileContent.Mid(i, newLineLocation - i) };
+	//	if (newLineLocation != INDEX_NONE)
+	//	{
+	//		FString line{ fileContent.Mid(i, newLineLocation - i) };
 
-			// UE_LOG(LogTemp, Warning, TEXT("Line %i :, %s"), i, *line);
+	//		// UE_LOG(LogTemp, Warning, TEXT("Line %i :, %s"), i, *line);
 
-			if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) == INDEX_NONE)
-			{
-				const int32 spacePos{ line.Find(TEXT(" "), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) };
+	//		if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) == INDEX_NONE)
+	//		{
+	//			const int32 spacePos{ line.Find(TEXT(" "), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) };
 
-				if (spacePos != INDEX_NONE)
-				{
-					const FString time{ line.Mid(0, spacePos) };
-					const FString letter{ line.Mid(spacePos + 1, 1) };
+	//			if (spacePos != INDEX_NONE)
+	//			{
+	//				const FString time{ line.Mid(0, spacePos) };
+	//				const FString letter{ line.Mid(spacePos + 1, 1) };
 
-					m_Letters.Add(letter[0]);
-					m_Times.Add(FCString::Atof(*time));
-				}
-			}
+	//				m_Letters.Add(letter[0]);
+	//				m_Times.Add(FCString::Atof(*time));
+	//			}
+	//		}
 
-			i = newLineLocation + 1;
-		}
-		else
-			++i;
-	}
+	//		i = newLineLocation + 1;
+	//	}
+	//	else
+	//		++i;
+	//}
+
+	ReadFile();
 
 	m_InversePlayerForward = -GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorForwardVector();
 }
 
-void AMusicBlockSpawner::ReadFile(const TArray<int32>& tracks, const FString& file) noexcept
+void AMusicBlockSpawner::ReadFile() noexcept
 {
 	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
 
+	FString path{ FPaths::ProjectContentDir() };
+	path.Append(m_FileToRead);
+
 	FString fileContent;
-	if (FileManager.FileExists(*file))
+	if (FileManager.FileExists(*m_FileToRead))
 	{
-		if (FFileHelper::LoadFileToString(fileContent, *file, FFileHelper::EHashOptions::None))
+		if (FFileHelper::LoadFileToString(fileContent, *m_FileToRead, FFileHelper::EHashOptions::None))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
 		}
@@ -97,15 +102,44 @@ void AMusicBlockSpawner::ReadFile(const TArray<int32>& tracks, const FString& fi
 		}
 	}
 
+	bool trackFound{};
 	for (int32 i{}; i < fileContent.Len();)
 	{
 		const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
 
+		/* Check if we're not at the end of the file */
 		if (newLineLocation != INDEX_NONE)
 		{
+			/* Get the current line */
 			const FString line{ fileContent.Mid(i, newLineLocation - i) };
 
-			/* Check if this is the track we're interested in */
+			/* Check if we've found the track we want to get the notes out of */
+			if (trackFound)
+			{
+				/* Check if we've reached the end of the track */
+				if (line.Find(FString{ TEXT("End of track") }, ESearchCase::Type::CaseSensitive, ESearchDir::Type::FromStart) != INDEX_NONE)
+				{
+					trackFound = false;
+					++i;
+					continue;
+				}
+
+				/* Check if the line contains a note instruction */
+				const int32 noteInstruction{ line.Find(FString{ TEXT("NT") }, ESearchCase::Type::CaseSensitive, ESearchDir::Type::FromStart) };
+				if (noteInstruction != INDEX_NONE)
+				{
+					/* A line with a note instruction looks like this: */
+					/* CR             0   (BA    1   CR         0)   TR  3   CH  1   NT  D             1/2   von=81   voff=0 */
+					/* von and voff are optional */
+
+					/* Get the length of the crotchet */
+
+				}
+			}
+			else /* Search for the track */
+			{
+
+			}
 
 			/* Is this a comment? */
 			if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) != INDEX_NONE)
@@ -118,12 +152,12 @@ void AMusicBlockSpawner::ReadFile(const TArray<int32>& tracks, const FString& fi
 					/* Is this comment a Track comment? */
 					if (line.Mid(0, spacePosition) == FString{ TEXT("# TRACK") })
 					{
-						for (const int32 trackNumber : tracks)
+						for (const int32 trackNumber : m_Tracks)
 						{
 							if (FString::FromInt(trackNumber) == line.Mid(spacePosition, 1))
-							{
+								trackFound = true;
 
-							}
+							++i; /* continue the loop */
 						}
 					}
 				}

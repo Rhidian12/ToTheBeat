@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "ToTheBeat",
-			"Path": "C:\\Users\\rhidi\\Documents\\GitHub\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeat.Target.cs",
+			"Path": "D:\\Github\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeat.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "ToTheBeatEditor",
-			"Path": "C:\\Users\\rhidi\\Documents\\GitHub\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeatEditor.Target.cs",
+			"Path": "D:\\Github\\ToTheBeat\\ToTheBeat\\Source\\ToTheBeatEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]

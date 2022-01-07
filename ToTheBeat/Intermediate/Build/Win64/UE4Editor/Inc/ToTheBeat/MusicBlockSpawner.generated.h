@@ -70,7 +70,9 @@ public: \
 
 
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__m_BPMusicBlock() { return STRUCT_OFFSET(AMusicBlockSpawner, m_BPMusicBlock); }
+	FORCEINLINE static uint32 __PPO__m_BPMusicBlock() { return STRUCT_OFFSET(AMusicBlockSpawner, m_BPMusicBlock); } \
+	FORCEINLINE static uint32 __PPO__m_Tracks() { return STRUCT_OFFSET(AMusicBlockSpawner, m_Tracks); } \
+	FORCEINLINE static uint32 __PPO__m_FileToRead() { return STRUCT_OFFSET(AMusicBlockSpawner, m_FileToRead); }
 
 
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_12_PROLOG

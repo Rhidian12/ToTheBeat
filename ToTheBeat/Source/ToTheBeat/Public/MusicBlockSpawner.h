@@ -21,7 +21,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void ReadFile(const TArray<int32>& tracks, const FString& file) noexcept;
+	void ReadFile() noexcept;
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Transform for block to spawn"))
 	void AddTransform(const FTransform& transform) noexcept;
@@ -55,4 +55,10 @@ private:
 
 	int m_SlowdownCounter;
 	int m_BombCounter;
+
+	UPROPERTY(EditAnywhere)
+	TArray<int32> m_Tracks;
+
+	UPROPERTY(EditAnywhere)
+	FString m_FileToRead;
 };
