@@ -90,9 +90,9 @@ void AMusicBlockSpawner::ReadFile() noexcept
 	path.Append(m_FileToRead);
 
 	FString fileContent;
-	if (FileManager.FileExists(*m_FileToRead))
+	if (FileManager.FileExists(*path))
 	{
-		if (FFileHelper::LoadFileToString(fileContent, *m_FileToRead, FFileHelper::EHashOptions::None))
+		if (FFileHelper::LoadFileToString(fileContent, *path, FFileHelper::EHashOptions::None))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
 		}
@@ -120,7 +120,7 @@ void AMusicBlockSpawner::ReadFile() noexcept
 				if (line.Find(FString{ TEXT("End of track") }, ESearchCase::Type::CaseSensitive, ESearchDir::Type::FromStart) != INDEX_NONE)
 				{
 					trackFound = false;
-					++i;
+					i = newLineLocation + 1;
 					continue;
 				}
 
@@ -131,37 +131,105 @@ void AMusicBlockSpawner::ReadFile() noexcept
 					/* A line with a note instruction looks like this: */
 					/* CR             0   (BA    1   CR         0)   TR  3   CH  1   NT  D             1/2   von=81   voff=0 */
 					/* von and voff are optional */
+					/* But all we care about is NT and the first number after it */
 
 					/* Get the length of the crotchet */
 
+					/* This should be: NT [NOTE] [LENGTH] <optional> [von] [voff] */
+					const FString noteInstructionLine{ line.Mid(noteInstruction, line.Len() - noteInstruction) };
+
+					const int32 digitLocation{ FindByPredicate(noteInstructionLine, [](const TCHAR c)->bool
+							{
+							/* check if the character is a digit */
+							return static_cast<int>(c) >= 48 && static_cast<int>(c) <= 57;
+						}) };
+
+					/* This should be: [LENGTH] <optional> [von] [voff] */
+					FString numberString{ noteInstructionLine.Mid(digitLocation, noteInstructionLine.Len() - digitLocation) };
+
+					int32 spacePos{};
+
+					if (numberString.FindChar(' ', spacePos))
+						numberString = numberString.Mid(0, spacePos);
+					else
+						spacePos = numberString.Len() - 1; /* final index is \n or \r */
+
+					/* check if the number is an addition */
+					int32 additionPos{};
+					if (numberString.FindChar('+', additionPos))
+					{
+						TArray<float> numbers{};
+
+						/* add the left sign of the addition */
+						numbers.Add(FCString::Atof(*numberString.Mid(0, additionPos)));
+
+						/* check if the addition contains a fraction, because life has to be hard */
+						int32 fractionPos{};
+						if (numberString.FindChar('/', fractionPos))
+						{
+							const float leftSide{ FCString::Atof(*numberString.Mid(additionPos + 1, numberString.Len() - fractionPos - additionPos)) };
+							const float rightSide{ FCString::Atof(*numberString.Mid(fractionPos + 1, numberString.Len() - fractionPos)) };
+							numbers.Add(leftSide / rightSide);
+						}
+						else /* no fraction */
+						{
+							/* add the right side of the addition */
+							numbers.Add(FCString::Atof(*numberString.Mid(additionPos, numberString.Len() - additionPos)));
+						}
+
+						float result{};
+						for (const float number : numbers)
+							result += number;
+
+						if (m_Times.Num() != 0)
+							m_Times.Add(m_Times.Last() + result);
+						else
+							m_Times.Add(result);
+
+						i = newLineLocation + 1;
+						continue;
+					}
+
+					/* check if the number is a fraction */
+					int32 fractionPos{};
+					if (numberString.FindChar('/', fractionPos))
+					{
+						const float leftSide{ FCString::Atof(*numberString.Mid(0, fractionPos)) };
+						const float rightSide{ FCString::Atof(*numberString.Mid(fractionPos + 1, numberString.Len() - fractionPos)) };
+
+						if (m_Times.Num() != 0)
+							m_Times.Add(m_Times.Last() + (leftSide / rightSide));
+						else
+							m_Times.Add(leftSide / rightSide);
+
+						i = newLineLocation + 1;
+						continue;
+					}
+
+					/* if we get here, the number is neither a fraction or an addition */
+					if (m_Times.Num() != 0)
+						m_Times.Add(m_Times.Last() + FCString::Atof(*numberString));
+					else
+						m_Times.Add(FCString::Atof(*numberString));
 				}
 			}
 			else /* Search for the track */
 			{
-
-			}
-
-			/* Is this a comment? */
-			if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) != INDEX_NONE)
-			{
-				/* Track comment should look like: # TRACK [number] */
-
-				int32 spacePosition{};
-				if (line.FindLastChar(' ', spacePosition))
+				/* Is this a comment? */
+				if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) != INDEX_NONE)
 				{
-					/* Is this comment a Track comment? */
-					if (line.Mid(0, spacePosition) == FString{ TEXT("# TRACK") })
-					{
-						for (const int32 trackNumber : m_Tracks)
-						{
-							if (FString::FromInt(trackNumber) == line.Mid(spacePosition, 1))
-								trackFound = true;
+					/* Track comment should look like: # TRACK [number] */
 
-							++i; /* continue the loop */
-						}
-					}
+					int32 spacePosition{};
+					if (line.FindLastChar(' ', spacePosition))
+						if (line.Mid(0, spacePosition) == FString{ TEXT("# TRACK") }) /* Is this comment a Track comment? */
+							for (const int32 trackNumber : m_Tracks)
+								if (FString::FromInt(trackNumber) == line.Mid(spacePosition + 1, 1))
+									trackFound = true;
 				}
 			}
+
+			i = newLineLocation + 1;
 		}
 	}
 }
@@ -279,4 +347,13 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	pStaticMeshComponent->SetMaterial(0, pMaterial);
 
 	pMusicBlockManager->AddMusicBlock(pMusicBlock);
+}
+
+int32 AMusicBlockSpawner::FindByPredicate(const FString& fstring, bool (*predicate)(const TCHAR)) const noexcept
+{
+	for (int32 i{}; i < fstring.Len(); ++i)
+		if (predicate(fstring[i]))
+			return i;
+
+	return INDEX_NONE;
 }

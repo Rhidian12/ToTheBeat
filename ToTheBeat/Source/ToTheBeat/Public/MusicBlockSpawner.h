@@ -35,7 +35,9 @@ protected:
 
 private:
 	void SpawnBlock(const char c, const MusicBlockType type) const noexcept;
-	bool IsTrack(const FString& fileContents);
+	// bool IsTrack(const FString& fileContents);
+
+	int32 FindByPredicate(const FString& fstring, bool (*predicate)(const TCHAR)) const noexcept;
 
 	TArray<FTransform> m_pTransforms;
 
