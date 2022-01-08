@@ -63,4 +63,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	FString m_FileToRead;
+
+	UPROPERTY(EditAnywhere)
+	float m_BPM;
 };

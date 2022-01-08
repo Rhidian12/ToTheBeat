@@ -102,6 +102,7 @@ void AMusicBlockSpawner::ReadFile() noexcept
 		}
 	}
 
+	const float crotchetTime{ 60.f / m_BPM }; /* 1 minute divided by BPM */
 	bool trackFound{};
 	for (int32 i{}; i < fileContent.Len();)
 	{
@@ -181,6 +182,8 @@ void AMusicBlockSpawner::ReadFile() noexcept
 						for (const float number : numbers)
 							result += number;
 
+						result *= crotchetTime;
+
 						if (m_Times.Num() != 0)
 							m_Times.Add(m_Times.Last() + result);
 						else
@@ -197,10 +200,12 @@ void AMusicBlockSpawner::ReadFile() noexcept
 						const float leftSide{ FCString::Atof(*numberString.Mid(0, fractionPos)) };
 						const float rightSide{ FCString::Atof(*numberString.Mid(fractionPos + 1, numberString.Len() - fractionPos)) };
 
+						const float result{ (leftSide / rightSide) * crotchetTime };
+
 						if (m_Times.Num() != 0)
-							m_Times.Add(m_Times.Last() + (leftSide / rightSide));
+							m_Times.Add(m_Times.Last() + result);
 						else
-							m_Times.Add(leftSide / rightSide);
+							m_Times.Add(result);
 
 						i = newLineLocation + 1;
 						continue;
@@ -208,9 +213,9 @@ void AMusicBlockSpawner::ReadFile() noexcept
 
 					/* if we get here, the number is neither a fraction or an addition */
 					if (m_Times.Num() != 0)
-						m_Times.Add(m_Times.Last() + FCString::Atof(*numberString));
+						m_Times.Add(m_Times.Last() + (FCString::Atof(*numberString) * crotchetTime));
 					else
-						m_Times.Add(FCString::Atof(*numberString));
+						m_Times.Add(FCString::Atof(*numberString) * crotchetTime);
 				}
 			}
 			else /* Search for the track */
@@ -230,6 +235,26 @@ void AMusicBlockSpawner::ReadFile() noexcept
 			}
 
 			i = newLineLocation + 1;
+		}
+	}
+
+	/* add letters, for now just random */
+	for (int32 i{}; i < m_Times.Num(); ++i)
+	{
+		switch (rand() % 4)
+		{
+		case 0:
+			m_Letters.Add('W');
+			break;
+		case 1:
+			m_Letters.Add('A');
+			break;
+		case 2:
+			m_Letters.Add('S');
+			break;
+		case 3:
+			m_Letters.Add('D');
+			break;
 		}
 	}
 }
