@@ -35,6 +35,9 @@ void AMusicBlockSpawner::BeginPlay()
 
 void AMusicBlockSpawner::ReadFile() noexcept
 {
+	/* whoever reads this, just, don't bring it up */
+	/* you don't know how much of my mental sanity has disappeared */
+
 	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
 
 	FString path{ FPaths::ProjectContentDir() };
@@ -91,13 +94,13 @@ void AMusicBlockSpawner::ReadFile() noexcept
 					const FString crotchetLine{ line.Mid(crPos, line.Find(TEXT("TR"), ESearchCase::Type::CaseSensitive) - crPos) };
 					const float currentCrotchet{ GetCrotchet(crotchetLine) };
 
-					if (previousCrotchet < 0.f)
-						previousCrotchet = currentCrotchet;
-					else if (AreEqual(previousCrotchet, currentCrotchet))
+					if (AreEqual(previousCrotchet, currentCrotchet))
 					{
 						i = newLineLocation + 1;
 						continue;
 					}
+					
+					previousCrotchet = currentCrotchet;
 
 					/* This should be: NT [NOTE] [LENGTH] <optional> [von] [voff] */
 					const FString noteInstructionLine{ line.Mid(noteInstruction, line.Len() - noteInstruction) };
@@ -352,10 +355,18 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	pMusicBlockManager->AddMusicBlock(pMusicBlock);
 }
 
-float AMusicBlockSpawner::GetCrotchet(const FString& line) const noexcept
+float AMusicBlockSpawner::GetCrotchet(FString line) const noexcept
 {
 	/* line will look like this: */
 	/* CR		[NUMBER]	*/
+
+	/* get rid of all information except the number */
+	const int32 numberPos{ FindByPredicate(line, [](const TCHAR c)->bool
+		{
+			/* check if the character is a digit */
+			return static_cast<int>(c) >= 48 && static_cast<int>(c) <= 57;
+		}) };
+	line = line.Mid(numberPos, line.Len() - numberPos);
 
 	/* check if the number is an addition */
 	int32 additionPos{};
