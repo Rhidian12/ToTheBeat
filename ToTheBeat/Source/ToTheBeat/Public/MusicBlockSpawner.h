@@ -36,8 +36,10 @@ protected:
 private:
 	void SpawnBlock(const char c, const MusicBlockType type) const noexcept;
 	// bool IsTrack(const FString& fileContents);
+	float GetCrotchet(const FString& line) const noexcept;
 
-	int32 FindByPredicate(const FString& fstring, bool (*predicate)(const TCHAR)) const noexcept;
+	int32 FindByPredicate(const FString& fstring, bool (*predicate)(const TCHAR), const int32 startPos = 0) const noexcept;
+	bool AreEqual(const float a, const float b) const noexcept;
 
 	TArray<FTransform> m_pTransforms;
 
@@ -62,7 +64,10 @@ private:
 	TArray<int32> m_Tracks;
 
 	UPROPERTY(EditAnywhere)
-	FString m_FileToRead;
+	FString m_FileBeats;
+
+	UPROPERTY(EditAnywhere)
+	FString m_FileLetters;
 
 	UPROPERTY(EditAnywhere)
 	float m_BPM;

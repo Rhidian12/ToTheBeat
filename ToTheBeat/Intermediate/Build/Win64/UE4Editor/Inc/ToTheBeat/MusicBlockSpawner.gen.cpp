@@ -149,9 +149,13 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 #endif
 		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_m_Tracks;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_FileToRead_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_FileBeats_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FStrPropertyParams NewProp_m_FileToRead;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_m_FileBeats;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_FileLetters_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_m_FileLetters;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_BPM_MetaData[];
 #endif
@@ -190,12 +194,19 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 #endif
 	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_Tracks = { "m_Tracks", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlockSpawner, m_Tracks), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_Tracks_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_Tracks_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileToRead_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileBeats_MetaData[] = {
 		{ "Category", "MusicBlockSpawner" },
 		{ "ModuleRelativePath", "Public/MusicBlockSpawner.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileToRead = { "m_FileToRead", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlockSpawner, m_FileToRead), METADATA_PARAMS(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileToRead_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileToRead_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileBeats = { "m_FileBeats", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlockSpawner, m_FileBeats), METADATA_PARAMS(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileBeats_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileBeats_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileLetters_MetaData[] = {
+		{ "Category", "MusicBlockSpawner" },
+		{ "ModuleRelativePath", "Public/MusicBlockSpawner.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileLetters = { "m_FileLetters", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMusicBlockSpawner, m_FileLetters), METADATA_PARAMS(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileLetters_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileLetters_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPM_MetaData[] = {
 		{ "Category", "MusicBlockSpawner" },
@@ -207,7 +218,8 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPMusicBlock,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_Tracks_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_Tracks,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileToRead,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileBeats,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_FileLetters,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMusicBlockSpawner_Statics::NewProp_m_BPM,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMusicBlockSpawner_Statics::StaticCppClassTypeInfo = {
@@ -237,7 +249,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMusicBlockSpawner, 418117774);
+	IMPLEMENT_CLASS(AMusicBlockSpawner, 4209216510);
 	template<> TOTHEBEAT_API UClass* StaticClass<AMusicBlockSpawner>()
 	{
 		return AMusicBlockSpawner::StaticClass();

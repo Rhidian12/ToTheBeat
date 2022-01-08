@@ -28,55 +28,6 @@ void AMusicBlockSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//FString path{ FPaths::ProjectContentDir() };
-	//path.Append("SongBeats/Undertale - Megalovania.txt");
-
-	//IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
-
-	//FString fileContent;
-	//if (FileManager.FileExists(*path))
-	//{
-	//	if (FFileHelper::LoadFileToString(fileContent, *path, FFileHelper::EHashOptions::None))
-	//	{
-	//		//UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Text From File: %s"), *fileContent);
-	//		UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
-	//	}
-	//	else
-	//	{
-	//		UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
-	//	}
-	//}
-
-	//for (int32 i{}; i < fileContent.Len();)
-	//{
-	//	const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
-
-	//	if (newLineLocation != INDEX_NONE)
-	//	{
-	//		FString line{ fileContent.Mid(i, newLineLocation - i) };
-
-	//		// UE_LOG(LogTemp, Warning, TEXT("Line %i :, %s"), i, *line);
-
-	//		if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) == INDEX_NONE)
-	//		{
-	//			const int32 spacePos{ line.Find(TEXT(" "), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) };
-
-	//			if (spacePos != INDEX_NONE)
-	//			{
-	//				const FString time{ line.Mid(0, spacePos) };
-	//				const FString letter{ line.Mid(spacePos + 1, 1) };
-
-	//				m_Letters.Add(letter[0]);
-	//				m_Times.Add(FCString::Atof(*time));
-	//			}
-	//		}
-
-	//		i = newLineLocation + 1;
-	//	}
-	//	else
-	//		++i;
-	//}
-
 	ReadFile();
 
 	m_InversePlayerForward = -GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorForwardVector();
@@ -87,7 +38,7 @@ void AMusicBlockSpawner::ReadFile() noexcept
 	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
 
 	FString path{ FPaths::ProjectContentDir() };
-	path.Append(m_FileToRead);
+	path.Append(m_FileBeats);
 
 	FString fileContent;
 	if (FileManager.FileExists(*path))
@@ -103,6 +54,7 @@ void AMusicBlockSpawner::ReadFile() noexcept
 	}
 
 	const float crotchetTime{ 60.f / m_BPM }; /* 1 minute divided by BPM */
+	float previousCrotchet{ -1.f };
 	bool trackFound{};
 	for (int32 i{}; i < fileContent.Len();)
 	{
@@ -130,11 +82,22 @@ void AMusicBlockSpawner::ReadFile() noexcept
 				if (noteInstruction != INDEX_NONE)
 				{
 					/* A line with a note instruction looks like this: */
-					/* CR             0   (BA    1   CR         0)   TR  3   CH  1   NT  D             1/2   von=81   voff=0 */
+					/*BA    1   CR         0   TR  1   CH  1   NT  D             5/6   von=110 */
 					/* von and voff are optional */
 					/* But all we care about is NT and the first number after it */
 
-					/* Get the length of the crotchet */
+					/* Get the number of the crotchet */
+					const int32 crPos{ line.Find(TEXT("CR"), ESearchCase::Type::CaseSensitive) };
+					const FString crotchetLine{ line.Mid(crPos, line.Find(TEXT("TR"), ESearchCase::Type::CaseSensitive) - crPos) };
+					const float currentCrotchet{ GetCrotchet(crotchetLine) };
+
+					if (previousCrotchet < 0.f)
+						previousCrotchet = currentCrotchet;
+					else if (AreEqual(previousCrotchet, currentCrotchet))
+					{
+						i = newLineLocation + 1;
+						continue;
+					}
 
 					/* This should be: NT [NOTE] [LENGTH] <optional> [von] [voff] */
 					const FString noteInstructionLine{ line.Mid(noteInstruction, line.Len() - noteInstruction) };
@@ -236,26 +199,46 @@ void AMusicBlockSpawner::ReadFile() noexcept
 
 			i = newLineLocation + 1;
 		}
+		else
+			++i;
 	}
 
-	/* add letters, for now just random */
-	for (int32 i{}; i < m_Times.Num(); ++i)
+	path = FPaths::ProjectContentDir();
+	path.Append(m_FileLetters);
+
+	fileContent = TEXT("");
+	if (FileManager.FileExists(*path))
 	{
-		switch (rand() % 4)
+		if (FFileHelper::LoadFileToString(fileContent, *path, FFileHelper::EHashOptions::None))
 		{
-		case 0:
-			m_Letters.Add('W');
-			break;
-		case 1:
-			m_Letters.Add('A');
-			break;
-		case 2:
-			m_Letters.Add('S');
-			break;
-		case 3:
-			m_Letters.Add('D');
-			break;
+			UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file"));
 		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
+		}
+	}
+
+	for (int32 i{}; i < fileContent.Len();)
+	{
+		const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
+
+		/* Check if we're not at the end of the file */
+		if (newLineLocation != INDEX_NONE)
+		{
+			const FString line{ fileContent.Mid(i, newLineLocation - i) };
+
+			m_Letters.Add(line[0]);
+
+			i = newLineLocation + 1;
+		}
+		else
+			++i;
+	}
+
+	if (m_Times.Num() != m_Letters.Num())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Array sizes don't match!\nTimes size: %i\nLetters size: %i"), m_Times.Num(), m_Letters.Num());
 	}
 }
 
@@ -277,25 +260,20 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 
 	m_TotalElapsedTime += DeltaTime;
 
-	for (int32 i{}; i < m_Times.Num(); ++i)
+	if (m_TotalElapsedTime >= m_Times[0])
 	{
-		if (m_TotalElapsedTime >= m_Times[i])
-		{
-			++m_SlowdownCounter;
-			++m_BombCounter;
+		++m_SlowdownCounter;
+		++m_BombCounter;
 
-			if (m_SlowdownCounter % 20 == 0)
-				SpawnBlock(m_Letters[i], MusicBlockType::Slowdown);
-			else if (m_BombCounter % 33 == 0)
-				SpawnBlock(m_Letters[i], MusicBlockType::Bomb);
-			else
-				SpawnBlock(m_Letters[i], MusicBlockType::Normal);
+		if (m_SlowdownCounter % 20 == 0)
+			SpawnBlock(m_Letters[0], MusicBlockType::Slowdown);
+		else if (m_BombCounter % 33 == 0)
+			SpawnBlock(m_Letters[0], MusicBlockType::Bomb);
+		else
+			SpawnBlock(m_Letters[0], MusicBlockType::Normal);
 
-			m_Times.RemoveAt(i);
-			m_Letters.RemoveAt(i);
-
-			--i;
-		}
+		m_Times.RemoveAt(0);
+		m_Letters.RemoveAt(0);
 	}
 }
 
@@ -374,11 +352,93 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	pMusicBlockManager->AddMusicBlock(pMusicBlock);
 }
 
-int32 AMusicBlockSpawner::FindByPredicate(const FString& fstring, bool (*predicate)(const TCHAR)) const noexcept
+float AMusicBlockSpawner::GetCrotchet(const FString& line) const noexcept
 {
-	for (int32 i{}; i < fstring.Len(); ++i)
+	/* line will look like this: */
+	/* CR		[NUMBER]	*/
+
+	/* check if the number is an addition */
+	int32 additionPos{};
+	if (line.FindChar('+', additionPos))
+	{
+		TArray<float> numbers{};
+
+		/* add the left sign of the addition */
+		const int32 digitPos{ FindByPredicate(line, [](const TCHAR c)->bool
+		{
+				/* check if the character is a digit */
+				return static_cast<int>(c) >= 48 && static_cast<int>(c) <= 57;
+			}) };
+		numbers.Add(FCString::Atof(*line.Mid(digitPos, additionPos - digitPos)));
+
+		/* check if the addition contains a fraction, because life has to be hard */
+		int32 fractionPos{};
+		if (line.FindChar('/', fractionPos))
+		{
+			const float leftSide{ FCString::Atof(*line.Mid(additionPos + 1, line.Len() - fractionPos - additionPos)) };
+			const float rightSide{ FCString::Atof(*line.Mid(fractionPos + 1, line.Len() - fractionPos)) };
+			numbers.Add(leftSide / rightSide);
+		}
+		else /* no fraction */
+		{
+			/* add the right side of the addition */
+			numbers.Add(FCString::Atof(*line.Mid(additionPos, line.Len() - additionPos)));
+		}
+
+		float result{};
+		for (const float number : numbers)
+			result += number;
+
+		return result;
+	}
+
+	/* check if the number is a fraction */
+	int32 fractionPos{};
+	if (line.FindChar('/', fractionPos))
+	{
+		const float leftSide{ FCString::Atof(*line.Mid(0, fractionPos)) };
+		const float rightSide{ FCString::Atof(*line.Mid(fractionPos + 1, line.Len() - fractionPos)) };
+
+		return leftSide / rightSide;
+	}
+
+	const int32 startDigitLocation{ FindByPredicate(line, [](const TCHAR c)->bool
+		{
+			/* check if the character is a digit */
+			return static_cast<int>(c) >= 48 && static_cast<int>(c) <= 57;
+		}) };
+
+	int32 endDigitLocation{ startDigitLocation + 1 };
+
+	while (true)
+	{
+		const int32 temp{ FindByPredicate(line, [](const TCHAR c)->bool
+			{
+				/* check if the character is a digit */
+				return static_cast<int>(c) >= 48 && static_cast<int>(c) <= 57;
+			}, endDigitLocation + 1) };
+
+		if (temp == INDEX_NONE)
+			break;
+		else
+			endDigitLocation = temp;
+	}
+
+	return FCString::Atof(*line.Mid(startDigitLocation, endDigitLocation - startDigitLocation));
+}
+
+int32 AMusicBlockSpawner::FindByPredicate(const FString& fstring, bool (*predicate)(const TCHAR), const int32 startPos) const noexcept
+{
+	for (int32 i{ startPos }; i < fstring.Len(); ++i)
 		if (predicate(fstring[i]))
 			return i;
 
 	return INDEX_NONE;
+}
+
+bool AMusicBlockSpawner::AreEqual(const float a, const float b) const noexcept
+{
+	const float epsilon{ FLT_MIN };
+
+	return (fabs(a - b) <= epsilon);
 }
