@@ -239,10 +239,16 @@ void AMusicBlockSpawner::ReadFile() noexcept
 			++i;
 	}
 
+	while (m_Letters.Num() > m_Times.Num())
+		m_Letters.Pop();
+
 	if (m_Times.Num() != m_Letters.Num())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Array sizes don't match!\nTimes size: %i\nLetters size: %i"), m_Times.Num(), m_Letters.Num());
 	}
+
+
+	UE_LOG(LogTemp, Warning, TEXT("Final time: %f"), m_Times.Last());
 }
 
 // Called every frame
@@ -262,6 +268,9 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 	}
 
 	m_TotalElapsedTime += DeltaTime;
+
+	if (m_Times.Num() <= 0)
+		return;
 
 	if (m_TotalElapsedTime >= m_Times[0])
 	{
@@ -290,6 +299,11 @@ void AMusicBlockSpawner::SetDelay(const float delay) noexcept
 	m_Delay = delay;
 
 	m_IsDelaySet = true;
+}
+
+bool AMusicBlockSpawner::AreNotesDone() const noexcept
+{
+	return m_Times.Num() <= 0;
 }
 
 void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) const noexcept

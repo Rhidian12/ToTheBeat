@@ -21,19 +21,21 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void ReadFile() noexcept;
-
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Transform for block to spawn"))
 	void AddTransform(const FTransform& transform) noexcept;
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetSpawnDelay"))
 	void SetDelay(const float delay) noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Have all notes been spawned"))
+	bool AreNotesDone() const noexcept;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
+	void ReadFile() noexcept;
 	void SpawnBlock(const char c, const MusicBlockType type) const noexcept;
 	// bool IsTrack(const FString& fileContents);
 	float GetCrotchet(FString line) const noexcept;

@@ -19,5 +19,6 @@ public:
 	UScoreManager();
 	~UScoreManager();
 
+	UPROPERTY(BlueprintReadWrite)
 	int m_Score;
 };

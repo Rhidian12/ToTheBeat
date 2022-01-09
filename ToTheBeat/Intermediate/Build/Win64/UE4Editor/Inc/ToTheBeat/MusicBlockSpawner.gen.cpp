@@ -21,6 +21,13 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	TOTHEBEAT_API UClass* Z_Construct_UClass_AMusicBlock_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AMusicBlockSpawner::execAreNotesDone)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->AreNotesDone();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMusicBlockSpawner::execSetDelay)
 	{
 		P_GET_PROPERTY(FFloatProperty,Z_Param_delay);
@@ -42,6 +49,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		UClass* Class = AMusicBlockSpawner::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AddTransform", &AMusicBlockSpawner::execAddTransform },
+			{ "AreNotesDone", &AMusicBlockSpawner::execAreNotesDone },
 			{ "SetDelay", &AMusicBlockSpawner::execSetDelay },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -84,6 +92,44 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMusicBlockSpawner_AddTransform_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics
+	{
+		struct MusicBlockSpawner_eventAreNotesDone_Parms
+		{
+			bool ReturnValue;
+		};
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((MusicBlockSpawner_eventAreNotesDone_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(MusicBlockSpawner_eventAreNotesDone_Parms), &Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::Function_MetaDataParams[] = {
+		{ "DisplayName", "Have all notes been spawned" },
+		{ "ModuleRelativePath", "Public/MusicBlockSpawner.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMusicBlockSpawner, nullptr, "AreNotesDone", nullptr, nullptr, sizeof(MusicBlockSpawner_eventAreNotesDone_Parms), Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -170,6 +216,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AMusicBlockSpawner_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AMusicBlockSpawner_AddTransform, "AddTransform" }, // 3883105057
+		{ &Z_Construct_UFunction_AMusicBlockSpawner_AreNotesDone, "AreNotesDone" }, // 1270088575
 		{ &Z_Construct_UFunction_AMusicBlockSpawner_SetDelay, "SetDelay" }, // 3867268894
 	};
 #if WITH_METADATA
@@ -249,7 +296,7 @@ void EmptyLinkFunctionForGeneratedCodeMusicBlockSpawner() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMusicBlockSpawner, 4209216510);
+	IMPLEMENT_CLASS(AMusicBlockSpawner, 2705682115);
 	template<> TOTHEBEAT_API UClass* StaticClass<AMusicBlockSpawner>()
 	{
 		return AMusicBlockSpawner::StaticClass();

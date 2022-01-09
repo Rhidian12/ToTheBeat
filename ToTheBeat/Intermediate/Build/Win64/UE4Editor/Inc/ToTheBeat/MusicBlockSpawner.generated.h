@@ -17,12 +17,14 @@ struct FTransform;
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_SPARSE_DATA
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execAreNotesDone); \
 	DECLARE_FUNCTION(execSetDelay); \
 	DECLARE_FUNCTION(execAddTransform);
 
 
 #define ToTheBeat_Source_ToTheBeat_Public_MusicBlockSpawner_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execAreNotesDone); \
 	DECLARE_FUNCTION(execSetDelay); \
 	DECLARE_FUNCTION(execAddTransform);
 
