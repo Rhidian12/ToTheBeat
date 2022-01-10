@@ -5,6 +5,7 @@
 #include "ToTheBeatGameInstance.h"
 #include "MusicBlockManager.h"
 #include "UMaterialManager.h"
+#include "ModelManager.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -56,9 +57,6 @@ void AMusicBlockSpawner::ReadFile() noexcept
 		}
 	}
 
-	const float crotchetTime{ 60.f / m_BPM }; /* 1 minute divided by BPM */
-	float previousCrotchet{ -1.f };
-	bool trackFound{};
 	for (int32 i{}; i < fileContent.Len();)
 	{
 		const int32 newLineLocation{ fileContent.Find(TEXT("\n"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, i) };
@@ -69,137 +67,15 @@ void AMusicBlockSpawner::ReadFile() noexcept
 			/* Get the current line */
 			const FString line{ fileContent.Mid(i, newLineLocation - i) };
 
-			/* Check if we've found the track we want to get the notes out of */
-			if (trackFound)
-			{
-				/* Check if we've reached the end of the track */
-				if (line.Find(FString{ TEXT("End of track") }, ESearchCase::Type::CaseSensitive, ESearchDir::Type::FromStart) != INDEX_NONE)
-				{
-					trackFound = false;
-					i = newLineLocation + 1;
-					continue;
-				}
+			/* Line looks this: */
+			/* 0.3 Chord */
+			/* or like this: */
+			/* 6.000000000000001 Rest */
 
-				/* Check if the line contains a note instruction */
-				const int32 noteInstruction{ line.Find(FString{ TEXT("NT") }, ESearchCase::Type::CaseSensitive, ESearchDir::Type::FromStart) };
-				if (noteInstruction != INDEX_NONE)
-				{
-					/* A line with a note instruction looks like this: */
-					/*BA    1   CR         0   TR  1   CH  1   NT  D             5/6   von=110 */
-					/* von and voff are optional */
-					/* But all we care about is NT and the first number after it */
-
-					/* Get the number of the crotchet */
-					const int32 crPos{ line.Find(TEXT("CR"), ESearchCase::Type::CaseSensitive) };
-					const FString crotchetLine{ line.Mid(crPos, line.Find(TEXT("TR"), ESearchCase::Type::CaseSensitive) - crPos) };
-					const float currentCrotchet{ GetCrotchet(crotchetLine) };
-
-					if (AreEqual(previousCrotchet, currentCrotchet))
-					{
-						i = newLineLocation + 1;
-						continue;
-					}
-					
-					previousCrotchet = currentCrotchet;
-
-					/* This should be: NT [NOTE] [LENGTH] <optional> [von] [voff] */
-					const FString noteInstructionLine{ line.Mid(noteInstruction, line.Len() - noteInstruction) };
-
-					const int32 digitLocation{ FindByPredicate(noteInstructionLine, [](const TCHAR c)->bool
-							{
-							/* check if the character is a digit */
-							return static_cast<int>(c) >= 48 && static_cast<int>(c) <= 57;
-						}) };
-
-					/* This should be: [LENGTH] <optional> [von] [voff] */
-					FString numberString{ noteInstructionLine.Mid(digitLocation, noteInstructionLine.Len() - digitLocation) };
-
-					int32 spacePos{};
-
-					if (numberString.FindChar(' ', spacePos))
-						numberString = numberString.Mid(0, spacePos);
-					else
-						spacePos = numberString.Len() - 1; /* final index is \n or \r */
-
-					/* check if the number is an addition */
-					int32 additionPos{};
-					if (numberString.FindChar('+', additionPos))
-					{
-						TArray<float> numbers{};
-
-						/* add the left sign of the addition */
-						numbers.Add(FCString::Atof(*numberString.Mid(0, additionPos)));
-
-						/* check if the addition contains a fraction, because life has to be hard */
-						int32 fractionPos{};
-						if (numberString.FindChar('/', fractionPos))
-						{
-							const float leftSide{ FCString::Atof(*numberString.Mid(additionPos + 1, numberString.Len() - fractionPos - additionPos)) };
-							const float rightSide{ FCString::Atof(*numberString.Mid(fractionPos + 1, numberString.Len() - fractionPos)) };
-							numbers.Add(leftSide / rightSide);
-						}
-						else /* no fraction */
-						{
-							/* add the right side of the addition */
-							numbers.Add(FCString::Atof(*numberString.Mid(additionPos, numberString.Len() - additionPos)));
-						}
-
-						float result{};
-						for (const float number : numbers)
-							result += number;
-
-						result *= crotchetTime;
-
-						if (m_Times.Num() != 0)
-							m_Times.Add(m_Times.Last() + result);
-						else
-							m_Times.Add(result);
-
-						i = newLineLocation + 1;
-						continue;
-					}
-
-					/* check if the number is a fraction */
-					int32 fractionPos{};
-					if (numberString.FindChar('/', fractionPos))
-					{
-						const float leftSide{ FCString::Atof(*numberString.Mid(0, fractionPos)) };
-						const float rightSide{ FCString::Atof(*numberString.Mid(fractionPos + 1, numberString.Len() - fractionPos)) };
-
-						const float result{ (leftSide / rightSide) * crotchetTime };
-
-						if (m_Times.Num() != 0)
-							m_Times.Add(m_Times.Last() + result);
-						else
-							m_Times.Add(result);
-
-						i = newLineLocation + 1;
-						continue;
-					}
-
-					/* if we get here, the number is neither a fraction or an addition */
-					if (m_Times.Num() != 0)
-						m_Times.Add(m_Times.Last() + (FCString::Atof(*numberString) * crotchetTime));
-					else
-						m_Times.Add(FCString::Atof(*numberString) * crotchetTime);
-				}
-			}
-			else /* Search for the track */
-			{
-				/* Is this a comment? */
-				if (line.Find(TEXT("#"), ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromStart, -1) != INDEX_NONE)
-				{
-					/* Track comment should look like: # TRACK [number] */
-
-					int32 spacePosition{};
-					if (line.FindLastChar(' ', spacePosition))
-						if (line.Mid(0, spacePosition) == FString{ TEXT("# TRACK") }) /* Is this comment a Track comment? */
-							for (const int32 trackNumber : m_Tracks)
-								if (FString::FromInt(trackNumber) == line.Mid(spacePosition + 1, 1))
-									trackFound = true;
-				}
-			}
-
+			const int32 spaceLocation{ line.Find(FString{ TEXT(" ") }) };
+			if (line.Mid(spaceLocation + 1, line.Len() - spaceLocation - 1) != TEXT("Rest"))
+				m_Times.Add(FCString::Atof(*line.Mid(0, spaceLocation)));
+				
 			i = newLineLocation + 1;
 		}
 		else
@@ -246,7 +122,6 @@ void AMusicBlockSpawner::ReadFile() noexcept
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Array sizes don't match!\nTimes size: %i\nLetters size: %i"), m_Times.Num(), m_Letters.Num());
 	}
-
 
 	UE_LOG(LogTemp, Warning, TEXT("Final time: %f"), m_Times.Last());
 }
@@ -321,6 +196,7 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	UToTheBeatGameInstance* const pGameInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
 	const UMaterialManager* const pMaterialManager{ pGameInstance->GetMaterialManagerInstance() };
 	AMusicBlockManager* const pMusicBlockManager{ pGameInstance->GetMusicBlockManagerInstance() };
+	const UModelManager* const pModelManager{ pGameInstance->GetModelManagerInstance() };
 
 	switch (c)
 	{
@@ -357,7 +233,7 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	switch (type)
 	{
 	case MusicBlockType::Normal:
-		// pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'")).Object);
+		pStaticMeshComponent->SetStaticMesh(pModelManager->GetMesh(FString{ TEXT("Cube") }));
 		break;
 	case MusicBlockType::Slowdown:
 		// pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cone.Cone'")).Object);
