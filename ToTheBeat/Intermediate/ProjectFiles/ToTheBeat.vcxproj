@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{063DE4EC-6DB0-4579-A079-FB7B1187A4C8}</ProjectGuid>
+    <ProjectGuid>{4E25210E-4329-4EE1-9414-2D872C3B97E7}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>ToTheBeat</RootNamespace>
     <PlatformToolset>v142</PlatformToolset>
