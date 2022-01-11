@@ -34,10 +34,12 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get ModelManager Instance"))
 	UModelManager* GetModelManagerInstance() noexcept;
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set ModelManager Instance"))
+	void SetModelManagerInstance(UModelManager* const pModelManagerInstance) noexcept;
+
 protected:
 	virtual void Shutdown() override;
 
-private:
 	/* this needs to be UPROPERTY so GC does its thing (apparently) */
 	/* Transient so that the object does not get serialized */
 	UPROPERTY(Transient)
@@ -49,6 +51,6 @@ private:
 	UPROPERTY(Transient)
 	UScoreManager* m_pScoreManagerInstance;
 
-	UPROPERTY(Transient, EditAnywhere)
+	UPROPERTY(Transient)
 	UModelManager* m_pModelManagerInstance;
 };

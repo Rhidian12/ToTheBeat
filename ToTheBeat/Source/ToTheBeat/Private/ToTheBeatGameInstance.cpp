@@ -32,11 +32,16 @@ UScoreManager* UToTheBeatGameInstance::GetScoreManagerInstance() noexcept
 UModelManager* UToTheBeatGameInstance::GetModelManagerInstance() noexcept
 {
 	return IsValid(m_pModelManagerInstance) ?
-		m_pModelManagerInstance :
-		m_pModelManagerInstance = NewObject<UModelManager>(this, FName{ "Model Manager" });
+		m_pModelManagerInstance : nullptr;
+		/*m_pModelManagerInstance = NewObject<UModelManager>(this, FName{ "Model Manager" });*/
 }
 
 void UToTheBeatGameInstance::Shutdown()
 {
 	UGameInstance::Shutdown();
+}
+
+void UToTheBeatGameInstance::SetModelManagerInstance(UModelManager* const pModelManagerInstance) noexcept
+{
+	m_pModelManagerInstance = pModelManagerInstance;
 }

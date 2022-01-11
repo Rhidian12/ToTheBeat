@@ -236,7 +236,10 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 		pStaticMeshComponent->SetStaticMesh(pModelManager->GetMesh(FString{ TEXT("Cube") }));
 		break;
 	case MusicBlockType::Slowdown:
-		// pStaticMeshComponent->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cone.Cone'")).Object);
+		pStaticMeshComponent->SetStaticMesh(pModelManager->GetMesh(FString{ TEXT("Timeturner") }));
+		break;
+	case MusicBlockType::Bomb:
+		pStaticMeshComponent->SetStaticMesh(pModelManager->GetMesh(FString{ TEXT("Bomb") }));
 		break;
 	}
 
