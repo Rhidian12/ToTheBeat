@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
+#include "Sound/SoundCue.h"
 #include "MusicBlock.h"
 #include "MusicBlockManager.generated.h"
 
@@ -54,4 +55,7 @@ private:
 	int m_AmountOfBlocksDestroyedByBomb;
 
 	APlayerPawn* m_pPlayerPawn;
+
+	UPROPERTY(EditAnywhere)
+	USoundCue* m_pBlockDestructionSound;
 };

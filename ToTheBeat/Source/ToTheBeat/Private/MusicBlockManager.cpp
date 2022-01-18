@@ -109,6 +109,8 @@ void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 		m_pPlayerPawn->GetHealthComponent()->IncreaseHealth(1);
 
 		pScoreManager->m_Score += 50;
+
+		UGameplayStatics::PlaySound2D(this, m_pBlockDestructionSound);
 	}
 	else
 	{

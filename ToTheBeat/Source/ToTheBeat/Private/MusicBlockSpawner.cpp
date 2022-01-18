@@ -144,7 +144,7 @@ void AMusicBlockSpawner::Tick(float DeltaTime)
 
 	m_TotalElapsedTime += DeltaTime;
 
-	if (m_Times.Num() <= 0)
+	if (m_Times.Num() <= 0 || m_Letters.Num() <= 0)
 		return;
 
 	if (m_TotalElapsedTime >= m_Times[0])
@@ -220,6 +220,8 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 		pMaterial = pMaterialManager->GetMaterial(3);
 		text = TEXT("D");
 		break;
+	default:
+		UE_LOG(LogTemp, Warning, TEXT("AAAAAAAAH"));
 	}
 
 	AActor* pActor{ GetWorld()->SpawnActor(m_BPMusicBlock, pTransform, FActorSpawnParameters{}) };

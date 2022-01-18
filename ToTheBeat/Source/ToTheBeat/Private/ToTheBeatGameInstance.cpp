@@ -18,8 +18,8 @@ UMaterialManager* UToTheBeatGameInstance::GetMaterialManagerInstance() noexcept
 AMusicBlockManager* UToTheBeatGameInstance::GetMusicBlockManagerInstance() noexcept
 {
 	return IsValid(m_pMusicBlockManagerInstance) ?
-		m_pMusicBlockManagerInstance :
-		m_pMusicBlockManagerInstance = Cast<AMusicBlockManager>(GetWorld()->SpawnActor(AMusicBlockManager::StaticClass()));
+		m_pMusicBlockManagerInstance : nullptr;
+		// m_pMusicBlockManagerInstance = Cast<AMusicBlockManager>(GetWorld()->SpawnActor(AMusicBlockManager::StaticClass()));
 }
 
 UScoreManager* UToTheBeatGameInstance::GetScoreManagerInstance() noexcept
@@ -44,4 +44,9 @@ void UToTheBeatGameInstance::Shutdown()
 void UToTheBeatGameInstance::SetModelManagerInstance(UModelManager* const pModelManagerInstance) noexcept
 {
 	m_pModelManagerInstance = pModelManagerInstance;
+}
+
+void UToTheBeatGameInstance::SetMusicBlockManagerInstance(AMusicBlockManager* const pMusicBlockManager) noexcept
+{
+	m_pMusicBlockManagerInstance = pMusicBlockManager;
 }

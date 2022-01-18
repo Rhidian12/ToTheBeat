@@ -37,6 +37,9 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set ModelManager Instance"))
 	void SetModelManagerInstance(UModelManager* const pModelManagerInstance) noexcept;
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set MusicBlockManager Instance"))
+	void SetMusicBlockManagerInstance(AMusicBlockManager* const pMusicBlockManager) noexcept;
+
 protected:
 	virtual void Shutdown() override;
 

@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeToTheBeat_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x8F512EBA,
+				0xEC49A57E,
 				0x271A7F2F,
 				METADATA_PARAMS(nullptr, 0)
 			};
