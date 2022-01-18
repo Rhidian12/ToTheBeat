@@ -40,6 +40,12 @@ protected:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Was a Block destroyed this frame"))
+	bool WasBombDestroyed() const noexcept;
+
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get the Destroyed Bomb's location"))
+	FTransform GetBombTransform() const noexcept;
+
 private:
 	void ApplyEmissiveMaterialToFirstBlock() noexcept;
 	void HandleSlowdown(const float DeltaTime) noexcept;
@@ -56,6 +62,8 @@ private:
 
 	APlayerPawn* m_pPlayerPawn;
 
+	bool m_WasBombDestroyed;
+	FTransform m_BombTransform;
 	int m_WrongInputs;
 
 	UPROPERTY(EditAnywhere)

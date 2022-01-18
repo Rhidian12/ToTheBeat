@@ -22,6 +22,8 @@ AMusicBlockManager::AMusicBlockManager()
 	m_AmountOfBlocksDestroyedByBomb = 15;
 
 	m_WrongInputs = 0;
+
+	m_WasBombDestroyed = false;
 }
 
 void AMusicBlockManager::BeginPlay()
@@ -34,6 +36,11 @@ void AMusicBlockManager::BeginPlay()
 void AMusicBlockManager::AddMusicBlock(AMusicBlock* const pMusicBlock) noexcept
 {
 	m_MusicBlocks.Add(pMusicBlock);
+}
+
+bool AMusicBlockManager::WasBombDestroyed() const noexcept
+{
+	return m_WasBombDestroyed;
 }
 
 void AMusicBlockManager::RemoveMusicBlockByValue(AMusicBlock* const pMusicBlock) noexcept
@@ -58,6 +65,8 @@ void AMusicBlockManager::RemoveMusicBlockByIndex(const int index) noexcept
 
 void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 {
+	m_WasBombDestroyed = false;
+
 	if (m_MusicBlocks.Num() == 0)
 		return;
 
@@ -101,9 +110,11 @@ void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 				break;
 			case MusicBlockType::Bomb:
 				m_WasBombActivated = true;
+				m_WasBombDestroyed = true;
+				m_BombTransform = m_MusicBlocks[0]->GetActorTransform();
 				break;
 			}
-		}
+		}		
 
 		RemoveMusicBlockByIndex(0);
 
@@ -133,6 +144,8 @@ void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 
 void AMusicBlockManager::Tick(float DeltaTime)
 {
+	Super::Tick(DeltaTime);
+
 	if (m_MusicBlocks.Num() == 0)
 		return;
 
@@ -211,4 +224,9 @@ void AMusicBlockManager::HandleBomb() noexcept
 
 		m_WasBombActivated = false;
 	}
+}
+
+FTransform AMusicBlockManager::GetBombTransform() const noexcept
+{
+	return m_BombTransform;
 }
