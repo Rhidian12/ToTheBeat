@@ -20,5 +20,8 @@ public:
 	~UScoreManager();
 
 	UPROPERTY(BlueprintReadWrite)
+	int m_MaxScorePerBlock;
+
+	UPROPERTY(BlueprintReadWrite)
 	int m_Score;
 };

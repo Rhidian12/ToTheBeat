@@ -56,6 +56,8 @@ private:
 
 	APlayerPawn* m_pPlayerPawn;
 
+	int m_WrongInputs;
+
 	UPROPERTY(EditAnywhere)
 	USoundCue* m_pBlockDestructionSound;
 };

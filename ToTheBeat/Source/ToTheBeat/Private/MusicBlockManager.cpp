@@ -20,6 +20,8 @@ AMusicBlockManager::AMusicBlockManager()
 
 	m_WasBombActivated = false;
 	m_AmountOfBlocksDestroyedByBomb = 15;
+
+	m_WrongInputs = 0;
 }
 
 void AMusicBlockManager::BeginPlay()
@@ -108,14 +110,24 @@ void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 		/* Increase health by 1 */
 		m_pPlayerPawn->GetHealthComponent()->IncreaseHealth(1);
 
-		pScoreManager->m_Score += 50;
+		/* Increase the score by MaxScore - (10% of MaxScore x WrongInputs) */
+		/* Example: 50 - (5 * 0) == 50 */
+		/* 50 - (5 * 3) == 35 */
+		/* There will always be a minimum of 10% of MaxScore added to the score */
+
+		const float tenPercent{ pScoreManager->m_MaxScorePerBlock * 0.1f };
+		const int score{ pScoreManager->m_MaxScorePerBlock - static_cast<int>(tenPercent * m_WrongInputs) };
+		pScoreManager->m_Score += score >= tenPercent ? score : tenPercent;
 
 		UGameplayStatics::PlaySound2D(this, m_pBlockDestructionSound);
+
+		m_WrongInputs = 0;
 	}
 	else
 	{
 		/* Decrease lives by 10, but dont remove the block! */
 		m_pPlayerPawn->GetHealthComponent()->DecreaseHealth(10);
+		++m_WrongInputs;
 	}
 }
 
@@ -125,7 +137,7 @@ void AMusicBlockManager::Tick(float DeltaTime)
 		return;
 
 	/* Make sure the first block has the emissive material */
-	
+
 	ApplyEmissiveMaterialToFirstBlock();
 
 	/* If the Slow down block was destroyed, slow down all blocks for x seconds */
@@ -133,7 +145,7 @@ void AMusicBlockManager::Tick(float DeltaTime)
 	HandleSlowdown(DeltaTime);
 
 	/* If a Bomb block was destroyed, delete the next x amount of blocks */
-	
+
 	HandleBomb();
 }
 
@@ -147,8 +159,16 @@ void AMusicBlockManager::ApplyEmissiveMaterialToFirstBlock() noexcept
 
 		const int32 index{ pMaterialManager->GetIndexByMaterial(pMaterialInterface) };
 
-		if (index != INDEX_NONE)
-			m_MusicBlocks[0]->GetStaticMeshComponent()->SetMaterial(0, pMaterialManager->GetMaterial(index + 4));
+		// if (m_MusicBlocks[0]->GetMusicBlockType() == MusicBlockType::Normal)
+		{
+			if (index != INDEX_NONE)
+				m_MusicBlocks[0]->GetStaticMeshComponent()->SetMaterial(0, pMaterialManager->GetMaterial(index + 4));
+		}
+		// else
+		// {
+		// 	if (index != INDEX_NONE)
+		// 		m_MusicBlocks[0]->GetStaticMeshComponent()->SetMaterial(0, pMaterialManager->GetMaterial(index - 4));
+		// }
 	}
 }
 

@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+struct FVector;
 struct FTransform;
 #ifdef TOTHEBEAT_MusicBlockSpawner_generated_h
 #error "MusicBlockSpawner.generated.h already included, missing '#pragma once' in MusicBlockSpawner.h"
@@ -19,6 +20,7 @@ struct FTransform;
  \
 	DECLARE_FUNCTION(execAreNotesDone); \
 	DECLARE_FUNCTION(execSetDelay); \
+	DECLARE_FUNCTION(execSetDirection); \
 	DECLARE_FUNCTION(execAddTransform);
 
 
@@ -26,6 +28,7 @@ struct FTransform;
  \
 	DECLARE_FUNCTION(execAreNotesDone); \
 	DECLARE_FUNCTION(execSetDelay); \
+	DECLARE_FUNCTION(execSetDirection); \
 	DECLARE_FUNCTION(execAddTransform);
 
 

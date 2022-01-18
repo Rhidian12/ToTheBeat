@@ -24,6 +24,9 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Transform for block to spawn"))
 	void AddTransform(const FTransform& transform) noexcept;
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set Direction for Blocks"))
+	void SetDirection(const FVector& direction) noexcept;
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetSpawnDelay"))
 	void SetDelay(const float delay) noexcept;
 
@@ -55,6 +58,7 @@ private:
 	float m_DelayTimer;
 
 	FVector m_InversePlayerForward;
+	FVector m_Direction;
 
 	UPROPERTY(EditAnywhere);
 	TSubclassOf<AMusicBlock> m_BPMusicBlock;

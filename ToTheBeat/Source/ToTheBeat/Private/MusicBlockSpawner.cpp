@@ -169,6 +169,11 @@ void AMusicBlockSpawner::AddTransform(const FTransform& transform) noexcept
 	m_pTransforms.Add(transform);
 }
 
+void AMusicBlockSpawner::SetDirection(const FVector& direction) noexcept
+{
+	m_Direction = direction;
+}
+
 void AMusicBlockSpawner::SetDelay(const float delay) noexcept
 {
 	m_Delay = delay;
@@ -190,7 +195,7 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	}
 
 	const FTransform* pTransform{};
-	UMaterialInterface* pMaterial{};
+	const FTransform* pFinalDestination{};
 	FString text{};
 
 	UToTheBeatGameInstance* const pGameInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
@@ -198,26 +203,26 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	AMusicBlockManager* const pMusicBlockManager{ pGameInstance->GetMusicBlockManagerInstance() };
 	const UModelManager* const pModelManager{ pGameInstance->GetModelManagerInstance() };
 
+	int32 materialIndex{};
 	switch (c)
 	{
 	case 'W':
 		pTransform = &m_pTransforms[0];
-		pMaterial = pMaterialManager->GetMaterial(0);
 		text = TEXT("W");
 		break;
 	case 'A':
 		pTransform = &m_pTransforms[1];
-		pMaterial = pMaterialManager->GetMaterial(1);
+		materialIndex = 1;
 		text = TEXT("A");
 		break;
 	case 'S':
 		pTransform = &m_pTransforms[2];
-		pMaterial = pMaterialManager->GetMaterial(2);
+		materialIndex = 2;
 		text = TEXT("S");
 		break;
 	case 'D':
 		pTransform = &m_pTransforms[3];
-		pMaterial = pMaterialManager->GetMaterial(3);
+		materialIndex = 3;
 		text = TEXT("D");
 		break;
 	default:
@@ -228,7 +233,7 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 	AMusicBlock* pMusicBlock{ Cast<AMusicBlock>(pActor) };
 	UStaticMeshComponent* const pStaticMeshComponent{ pMusicBlock->GetStaticMeshComponent() };
 
-	pMusicBlock->SetDirection(m_InversePlayerForward);
+	pMusicBlock->SetDirection(m_Direction);
 	pMusicBlock->SetText(FText::FromString(text));
 	pMusicBlock->SetMusicBlockType(type);
 
@@ -239,13 +244,15 @@ void AMusicBlockSpawner::SpawnBlock(const char c, const MusicBlockType type) con
 		break;
 	case MusicBlockType::Slowdown:
 		pStaticMeshComponent->SetStaticMesh(pModelManager->GetMesh(FString{ TEXT("Timeturner") }));
+		//materialIndex += 8;
 		break;
 	case MusicBlockType::Bomb:
 		pStaticMeshComponent->SetStaticMesh(pModelManager->GetMesh(FString{ TEXT("Bomb") }));
+		//materialIndex += 8;
 		break;
 	}
 
-	pStaticMeshComponent->SetMaterial(0, pMaterial);
+	pStaticMeshComponent->SetMaterial(0, pMaterialManager->GetMaterial(materialIndex));
 
 	pMusicBlockManager->AddMusicBlock(pMusicBlock);
 }

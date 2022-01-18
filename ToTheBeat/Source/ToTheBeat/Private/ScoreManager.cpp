@@ -6,6 +6,7 @@
 
 UScoreManager::UScoreManager()
 {
+	m_MaxScorePerBlock = 50;
 }
 
 UScoreManager::~UScoreManager()

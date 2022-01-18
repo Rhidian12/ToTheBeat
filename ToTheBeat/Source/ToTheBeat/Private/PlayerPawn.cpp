@@ -18,13 +18,13 @@ APlayerPawn::APlayerPawn()
 
 	RootComponent = m_pStaticMeshComponent;
 
-	m_pSpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
-	m_pSpringArmComponent->TargetArmLength = -100.f;
+	// m_pSpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
+	// m_pSpringArmComponent->TargetArmLength = -100.f;
 
-	m_pCameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-	m_pCameraComponent->SetupAttachment(m_pSpringArmComponent);
+	//m_pCameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
+	//m_pCameraComponent->SetupAttachment(m_pSpringArmComponent);
 
-	m_pSpringArmComponent->SetupAttachment(RootComponent);
+	//m_pSpringArmComponent->SetupAttachment(RootComponent);
 
 	m_pHealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
 }
