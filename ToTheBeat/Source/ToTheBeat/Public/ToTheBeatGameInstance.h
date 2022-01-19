@@ -47,6 +47,9 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set MusicPlayer Instance"))
 	void SetMusicPlayerInstance(AMusicPlayer* const pMusicPlayer) noexcept;
 
+	UPROPERTY(BlueprintReadWrite)
+	bool IsGamePlaying = false;
+
 protected:
 	virtual void Shutdown() override;
 
@@ -66,4 +69,5 @@ protected:
 
 	UPROPERTY(Transient)
 	AMusicPlayer* m_pMusicPlayerInstance;
+
 };

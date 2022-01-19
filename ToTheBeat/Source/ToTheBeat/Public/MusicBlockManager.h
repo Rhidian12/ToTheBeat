@@ -34,6 +34,12 @@ public:
 
 	void TryToDestroyBlock(const char c) noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Slowdown Time"))
+	float GetSlowdownTime() const noexcept;
+
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Have all MusicBlocks been destroyed"))
+	bool HaveAllNotesBeenDestroyed() const noexcept;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

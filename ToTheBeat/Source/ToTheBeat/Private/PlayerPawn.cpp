@@ -59,20 +59,32 @@ UHealthComponent* const APlayerPawn::GetHealthComponent() const noexcept
 
 void APlayerPawn::WPressed()
 {
-	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('W');
+	UToTheBeatGameInstance* pInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
+	
+	if (pInstance->IsGamePlaying)
+		pInstance->GetMusicBlockManagerInstance()->TryToDestroyBlock('W');
 }
 
 void APlayerPawn::APressed()
 {
-	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('A');
+	UToTheBeatGameInstance* pInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
+
+	if (pInstance->IsGamePlaying)
+		pInstance->GetMusicBlockManagerInstance()->TryToDestroyBlock('A');
 }
 
 void APlayerPawn::SPressed()
 {
-	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('S');
+	UToTheBeatGameInstance* pInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
+
+	if (pInstance->IsGamePlaying)
+		pInstance->GetMusicBlockManagerInstance()->TryToDestroyBlock('S');
 }
 
 void APlayerPawn::DPressed()
 {
-	static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld()))->GetMusicBlockManagerInstance()->TryToDestroyBlock('D');
+	UToTheBeatGameInstance* pInstance{ static_cast<UToTheBeatGameInstance*>(UGameplayStatics::GetGameInstance(GetWorld())) };
+
+	if (pInstance->IsGamePlaying)
+		pInstance->GetMusicBlockManagerInstance()->TryToDestroyBlock('D');
 }

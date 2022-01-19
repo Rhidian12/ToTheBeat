@@ -112,7 +112,7 @@ void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 				m_BombTransform = m_MusicBlocks[0]->GetActorTransform();
 				break;
 			}
-		}		
+		}
 
 		RemoveMusicBlockByIndex(0);
 
@@ -187,43 +187,43 @@ void AMusicBlockManager::ApplyEmissiveMaterialToFirstBlock() noexcept
 
 void AMusicBlockManager::HandleSlowdown(const float DeltaTime) noexcept
 {
-	//if (m_IsSlowdownActive)
-	//{
-	//	if (m_SlowdownTimer < m_SlowdownTime)
-	//		m_SlowdownTimer += DeltaTime;
-	//}
-	//else
-	//{
-	//	m_IsSlowdownActive = false;
-	//	m_SlowdownTimer = 0.f;
-	//}
-
 	if (m_IsSlowdownActive)
 	{
-		const float newSpeed{ m_MusicBlocks[0]->GetMaxSpeed() * 0.5f };
-
-		for (AMusicBlock* const pMusicBlock : m_MusicBlocks)
-			pMusicBlock->SetCurrentSpeed(newSpeed);
-
-		/* Increment timer */
-
 		if (m_SlowdownTimer < m_SlowdownTime)
-			m_SlowdownTimer += DeltaTime;
+			m_SlowdownTimer += DeltaTime * 2.f; /* make sure our deltatime is normal*/
 		else
 		{
 			m_IsSlowdownActive = false;
 			m_SlowdownTimer = 0.f;
 		}
 	}
-	else
-	{
-		/* Make sure all blocks get the correct speed */
 
-		const float maxSpeed{ m_MusicBlocks[0]->GetMaxSpeed() };
+	//if (m_IsSlowdownActive)
+	//{
+	//	const float newSpeed{ m_MusicBlocks[0]->GetMaxSpeed() * 0.5f };
 
-		for (AMusicBlock* const pMusicBlock : m_MusicBlocks)
-			pMusicBlock->SetCurrentSpeed(maxSpeed);
-	}
+	//	for (AMusicBlock* const pMusicBlock : m_MusicBlocks)
+	//		pMusicBlock->SetCurrentSpeed(newSpeed);
+
+	//	/* Increment timer */
+
+	//	if (m_SlowdownTimer < m_SlowdownTime)
+	//		m_SlowdownTimer += DeltaTime;
+	//	else
+	//	{
+	//		m_IsSlowdownActive = false;
+	//		m_SlowdownTimer = 0.f;
+	//	}
+	//}
+	//else
+	//{
+	//	/* Make sure all blocks get the correct speed */
+
+	//	const float maxSpeed{ m_MusicBlocks[0]->GetMaxSpeed() };
+
+	//	for (AMusicBlock* const pMusicBlock : m_MusicBlocks)
+	//		pMusicBlock->SetCurrentSpeed(maxSpeed);
+	//}
 }
 
 void AMusicBlockManager::HandleBomb() noexcept
@@ -245,4 +245,14 @@ FTransform AMusicBlockManager::GetBombTransform() const noexcept
 bool AMusicBlockManager::IsSlowdownActive() const noexcept
 {
 	return m_IsSlowdownActive;
+}
+
+float AMusicBlockManager::GetSlowdownTime() const noexcept
+{
+	return m_SlowdownTime;
+}
+
+bool AMusicBlockManager::HaveAllNotesBeenDestroyed() const noexcept
+{
+	return m_MusicBlocks.Num() == 0;
 }
