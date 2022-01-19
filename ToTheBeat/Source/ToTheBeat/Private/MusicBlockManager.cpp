@@ -65,8 +65,6 @@ void AMusicBlockManager::RemoveMusicBlockByIndex(const int index) noexcept
 
 void AMusicBlockManager::TryToDestroyBlock(const char c) noexcept
 {
-	m_WasBombDestroyed = false;
-
 	if (m_MusicBlocks.Num() == 0)
 		return;
 
@@ -146,6 +144,8 @@ void AMusicBlockManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	m_WasBombDestroyed = false;
+
 	if (m_MusicBlocks.Num() == 0)
 		return;
 
@@ -187,6 +187,17 @@ void AMusicBlockManager::ApplyEmissiveMaterialToFirstBlock() noexcept
 
 void AMusicBlockManager::HandleSlowdown(const float DeltaTime) noexcept
 {
+	//if (m_IsSlowdownActive)
+	//{
+	//	if (m_SlowdownTimer < m_SlowdownTime)
+	//		m_SlowdownTimer += DeltaTime;
+	//}
+	//else
+	//{
+	//	m_IsSlowdownActive = false;
+	//	m_SlowdownTimer = 0.f;
+	//}
+
 	if (m_IsSlowdownActive)
 	{
 		const float newSpeed{ m_MusicBlocks[0]->GetMaxSpeed() * 0.5f };
@@ -229,4 +240,9 @@ void AMusicBlockManager::HandleBomb() noexcept
 FTransform AMusicBlockManager::GetBombTransform() const noexcept
 {
 	return m_BombTransform;
+}
+
+bool AMusicBlockManager::IsSlowdownActive() const noexcept
+{
+	return m_IsSlowdownActive;
 }

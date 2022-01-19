@@ -7,6 +7,7 @@
 #include "MusicBlockManager.h"
 #include "ScoreManager.h"
 #include "ModelManager.h"
+#include "MusicPlayer.h"
 
 UMaterialManager* UToTheBeatGameInstance::GetMaterialManagerInstance() noexcept
 {
@@ -36,6 +37,12 @@ UModelManager* UToTheBeatGameInstance::GetModelManagerInstance() noexcept
 		/*m_pModelManagerInstance = NewObject<UModelManager>(this, FName{ "Model Manager" });*/
 }
 
+AMusicPlayer* UToTheBeatGameInstance::GetMusicPlayerInstance() noexcept
+{
+	return IsValid(m_pMusicPlayerInstance) ?
+		m_pMusicPlayerInstance : nullptr;
+}
+
 void UToTheBeatGameInstance::Shutdown()
 {
 	UGameInstance::Shutdown();
@@ -49,4 +56,9 @@ void UToTheBeatGameInstance::SetModelManagerInstance(UModelManager* const pModel
 void UToTheBeatGameInstance::SetMusicBlockManagerInstance(AMusicBlockManager* const pMusicBlockManager) noexcept
 {
 	m_pMusicBlockManagerInstance = pMusicBlockManager;
+}
+
+void UToTheBeatGameInstance::SetMusicPlayerInstance(AMusicPlayer* const pMusicPlayer) noexcept
+{
+	m_pMusicPlayerInstance = pMusicPlayer;
 }

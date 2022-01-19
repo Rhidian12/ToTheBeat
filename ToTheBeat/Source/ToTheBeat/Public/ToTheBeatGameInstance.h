@@ -11,6 +11,7 @@ class UMaterialManager;
 class AMusicBlockManager;
 class UScoreManager;
 class UModelManager;
+class AMusicPlayer;
 
 /**
  * 
@@ -34,11 +35,17 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get ModelManager Instance"))
 	UModelManager* GetModelManagerInstance() noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get MusicPlayer Instance"))
+	AMusicPlayer* GetMusicPlayerInstance() noexcept;
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set ModelManager Instance"))
 	void SetModelManagerInstance(UModelManager* const pModelManagerInstance) noexcept;
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set MusicBlockManager Instance"))
 	void SetMusicBlockManagerInstance(AMusicBlockManager* const pMusicBlockManager) noexcept;
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set MusicPlayer Instance"))
+	void SetMusicPlayerInstance(AMusicPlayer* const pMusicPlayer) noexcept;
 
 protected:
 	virtual void Shutdown() override;
@@ -56,4 +63,7 @@ protected:
 
 	UPROPERTY(Transient)
 	UModelManager* m_pModelManagerInstance;
+
+	UPROPERTY(Transient)
+	AMusicPlayer* m_pMusicPlayerInstance;
 };

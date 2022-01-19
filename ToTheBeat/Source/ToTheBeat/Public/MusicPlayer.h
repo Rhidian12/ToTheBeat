@@ -23,6 +23,12 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetAudioDelay"))
 	void SetDelay(const float delay) noexcept;
 
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Audio"))
+	USoundBase* const GetAudio() const noexcept;
+
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Audio Component"))
+	UAudioComponent* const GetAudioComponent() const noexcept;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -30,6 +36,8 @@ protected:
 private:
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"));
 	USoundBase* m_pAudio;
+
+	UAudioComponent* m_pAudioComponent;
 
 	float m_Delay;
 	float m_DelayTimer;

@@ -15,12 +15,16 @@ AMusicPlayer::AMusicPlayer()
 	m_DelayTimer = 0.f;
 	m_IsDelaySet = false;
 	m_IsAudioPlaying = false;
+
+	m_pAudioComponent = CreateDefaultSubobject<UAudioComponent>("AudioComponent");
 }
 
 // Called when the game starts or when spawned
 void AMusicPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	m_pAudioComponent->Sound = m_pAudio;
 }
 
 // Called every frame
@@ -41,7 +45,8 @@ void AMusicPlayer::Tick(float DeltaTime)
 
 	if (!m_IsAudioPlaying)
 	{
-		UGameplayStatics::PlaySound2D(this, m_pAudio);
+		m_pAudioComponent->Play();
+		// UGameplayStatics::PlaySound2D(this, m_pAudio);
 		m_IsAudioPlaying = true;
 	}
 }
@@ -51,4 +56,14 @@ void AMusicPlayer::SetDelay(const float delay) noexcept
 	m_Delay = delay;
 
 	m_IsDelaySet = true;
+}
+
+USoundBase* const AMusicPlayer::GetAudio() const noexcept
+{
+	return m_pAudio;
+}
+
+UAudioComponent* const AMusicPlayer::GetAudioComponent() const noexcept
+{
+	return m_pAudioComponent;
 }

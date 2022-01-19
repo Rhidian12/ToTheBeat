@@ -40,8 +40,11 @@ protected:
 
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintPure, meta = (DisplayName = "Was a Block destroyed this frame"))
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Was a Bomb destroyed this frame"))
 	bool WasBombDestroyed() const noexcept;
+
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Is the Slowdown active"))
+	bool IsSlowdownActive() const noexcept;
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get the Destroyed Bomb's location"))
 	FTransform GetBombTransform() const noexcept;
